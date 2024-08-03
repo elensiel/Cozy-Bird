@@ -1,0 +1,69 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4m65fqabt3jp"]
+
+[ext_resource type="Script" path="res://script/pause_panel.gd" id="1_iswt2"]
+[ext_resource type="Theme" uid="uid://bcihif0mi53lh" path="res://resource/menu.tres" id="2_0ctou"]
+[ext_resource type="AudioStream" uid="uid://dbu1tx3a7hsd8" path="res://audio/sfx/button_press.wav" id="3_renwh"]
+
+[node name="Pause Panel" type="CanvasLayer"]
+process_mode = 2
+scale = Vector2(1.5, 1.5)
+transform = Transform2D(1.5, 0, 0, 1.5, 0, 0)
+script = ExtResource("1_iswt2")
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0.705882)
+offset_right = 320.0
+offset_bottom = 480.0
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -193.333
+offset_top = -214.667
+offset_right = 33.6672
+offset_bottom = 9.33316
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_0ctou")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 54
+theme_override_constants/margin_top = 45
+theme_override_constants/margin_right = 54
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Continue" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 25
+text = "CONTINUE"
+
+[node name="Quit" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 25
+text = "QUIT"
+
+[node name="Label" type="Label" parent="."]
+offset_top = 93.0
+offset_right = 320.0
+offset_bottom = 144.0
+theme = ExtResource("2_0ctou")
+text = "GAME PAUSED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_renwh")
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

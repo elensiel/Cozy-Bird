@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://ds7wh122udduf"]
+
+[ext_resource type="Script" path="res://script/Pillar.gd" id="1_y65ux"]
+[ext_resource type="Texture2D" uid="uid://b6l1jwmg52coc" path="res://sprite/pillar.png" id="2_t0pt0"]
+[ext_resource type="AudioStream" uid="uid://f50snx8avvum" path="res://audio/sfx/score.wav" id="3_dux2v"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_r5fu1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2bwtl"]
+size = Vector2(93, 427)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_scgji"]
+size = Vector2(119, 58)
+
+[node name="Pillar" type="Area2D"]
+script = ExtResource("1_y65ux")
+
+[node name="Point Reg" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Point Reg"]
+position = Vector2(87, 99)
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_r5fu1")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_dux2v")
+pitch_scale = 1.2
+
+[node name="Pillar" type="Sprite2D" parent="."]
+position = Vector2(-3.50001, -214.5)
+scale = Vector2(0.252344, 0.339333)
+texture = ExtResource("2_t0pt0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -252.5)
+shape = SubResource("RectangleShape2D_2bwtl")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_scgji")
+
+[node name="Pillar2" type="Sprite2D" parent="."]
+position = Vector2(-3.50002, 413.5)
+scale = Vector2(0.252, -0.339)
+texture = ExtResource("2_t0pt0")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 450.922)
+shape = SubResource("RectangleShape2D_2bwtl")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 215)
+shape = SubResource("RectangleShape2D_scgji")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Point Reg" to="." method="_on_point_reg_body_entered"]

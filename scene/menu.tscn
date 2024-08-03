@@ -1,0 +1,91 @@
+[gd_scene load_steps=6 format=3 uid="uid://bo7fgkmu6uogp"]
+
+[ext_resource type="Script" path="res://script/menu.gd" id="1_peofg"]
+[ext_resource type="Theme" uid="uid://bcihif0mi53lh" path="res://resource/menu.tres" id="2_rlpd0"]
+[ext_resource type="Texture2D" uid="uid://babqmof0j55he" path="res://sprite/menu bg.png" id="3_8w7w0"]
+[ext_resource type="AudioStream" uid="uid://dbu1tx3a7hsd8" path="res://audio/sfx/button_press.wav" id="4_6f824"]
+[ext_resource type="Script" path="res://script/Game Manager.gd" id="5_nesnx"]
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_peofg")
+
+[node name="UI" type="CanvasLayer" parent="."]
+scale = Vector2(1.5, 1.5)
+transform = Transform2D(1.5, 0, 0, 1.5, 0, 0)
+follow_viewport_enabled = true
+
+[node name="PanelContainer" type="PanelContainer" parent="UI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -193.333
+offset_top = -224.0
+offset_right = 33.6667
+offset_bottom = -0.000396729
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_rlpd0")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 54
+theme_override_constants/margin_top = 45
+theme_override_constants/margin_right = 54
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Play" type="Button" parent="UI/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 25
+text = "PLAY"
+
+[node name="Quit" type="Button" parent="UI/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 25
+text = "QUIT"
+
+[node name="High Score" type="Label" parent="UI"]
+offset_top = 86.0
+offset_right = 320.0
+offset_bottom = 135.0
+theme = ExtResource("2_rlpd0")
+theme_override_font_sizes/font_size = 32
+text = "HIGH SCORE: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Music Toggle" type="Button" parent="UI"]
+offset_left = 255.667
+offset_top = 5.33333
+offset_right = 314.667
+offset_bottom = 36.3333
+toggle_mode = true
+text = "MUSIC"
+
+[node name="BG" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="MenuBg" type="Sprite2D" parent="BG"]
+modulate = Color(0.819608, 0.819608, 0.819608, 1)
+position = Vector2(567.25, 360)
+scale = Vector2(0.430114, 0.5625)
+texture = ExtResource("3_8w7w0")
+metadata/_edit_lock_ = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_6f824")
+
+[node name="Game Manager" type="Node2D" parent="."]
+script = ExtResource("5_nesnx")
+
+[connection signal="pressed" from="UI/PanelContainer/MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="UI/PanelContainer/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="toggled" from="UI/Music Toggle" to="." method="_on_music_toggle_toggled"]
