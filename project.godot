@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Cozy Bird"
+config/tags=PackedStringArray("challenge")
 run/main_scene="res://scene/menu.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
@@ -21,6 +22,7 @@ window/size/viewport_width=480
 window/size/viewport_height=720
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
+window/handheld/orientation=1
 
 [input]
 
@@ -39,3 +41,4 @@ flap={
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

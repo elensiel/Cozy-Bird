@@ -12,6 +12,9 @@ var fall_speed : int = 500
 var rotation_speed : float = 0.04
 
 
+func _ready() -> void:
+	position.y = get_viewport_rect().size.y / 2
+
 func _unhandled_input(event) -> void:
 	if owner.state != 2: # if not dead--we take input
 		if event.is_action_pressed("flap"):
