@@ -1,0 +1,96 @@
+[gd_scene load_steps=13 format=3 uid="uid://ct8y3u6mrqjr"]
+
+[ext_resource type="Texture2D" uid="uid://g3s17285su7" path="res://sprite/background/bldgs back.png" id="1_0h1g6"]
+[ext_resource type="Script" path="res://scipt/game_loop.gd" id="1_cv2ha"]
+[ext_resource type="Texture2D" uid="uid://cefhx6jn4hpip" path="res://sprite/background/clouds back.png" id="2_4itqu"]
+[ext_resource type="Texture2D" uid="uid://dgwamwl8vy2sy" path="res://sprite/background/bldgs_mid.png" id="3_wt5tx"]
+[ext_resource type="Texture2D" uid="uid://bao0e1w6gefjq" path="res://sprite/background/clouds middle.png" id="4_htqwx"]
+[ext_resource type="Texture2D" uid="uid://d1psxj6s8wui3" path="res://sprite/background/bldgs_front.png" id="5_xbq0l"]
+[ext_resource type="Texture2D" uid="uid://dqsl8d8hmo6h" path="res://sprite/background/main.png" id="6_d8w1d"]
+[ext_resource type="Texture2D" uid="uid://bm5lr4hgdej2h" path="res://sprite/background/clouds front.png" id="7_ff34c"]
+[ext_resource type="Script" path="res://scipt/player.gd" id="9_ejq5o"]
+[ext_resource type="Texture2D" uid="uid://cryvuk2hpgm81" path="res://sprite/crow 64x64.png" id="10_wwn0w"]
+
+[sub_resource type="GDScript" id="GDScript_4pash"]
+resource_name = "ParaBG"
+script/source = "extends ParallaxBackground
+
+func _process(delta: float) -> void:
+	if owner.state == 1:
+		scroll_offset.x -= 20 * delta
+"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_50no6"]
+radius = 31.0
+height = 92.0
+
+[node name="GameLoop" type="Node"]
+script = ExtResource("1_cv2ha")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+follow_viewport_enabled = true
+script = SubResource("GDScript_4pash")
+
+[node name="Layer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.2, 1)
+motion_mirroring = Vector2(1745, 2.08189e-12)
+
+[node name="Buildings" type="Sprite2D" parent="ParallaxBackground/Layer3"]
+scale = Vector2(0.660985, 0.5625)
+texture = ExtResource("1_0h1g6")
+centered = false
+
+[node name="Clouds" type="Sprite2D" parent="ParallaxBackground/Layer3"]
+scale = Vector2(0.660985, 0.5625)
+texture = ExtResource("2_4itqu")
+centered = false
+
+[node name="Layer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.4, 1)
+motion_mirroring = Vector2(1745, 2.08189e-12)
+
+[node name="Buildings" type="Sprite2D" parent="ParallaxBackground/Layer2"]
+scale = Vector2(0.660985, 0.5625)
+texture = ExtResource("3_wt5tx")
+centered = false
+
+[node name="Clouds" type="Sprite2D" parent="ParallaxBackground/Layer2"]
+scale = Vector2(0.660985, 0.5625)
+texture = ExtResource("4_htqwx")
+centered = false
+
+[node name="Layer1" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.7, 1)
+motion_mirroring = Vector2(1745, 2.08189e-12)
+
+[node name="Buildings" type="Sprite2D" parent="ParallaxBackground/Layer1"]
+scale = Vector2(0.660985, 0.5625)
+texture = ExtResource("5_xbq0l")
+centered = false
+
+[node name="Main" type="Sprite2D" parent="ParallaxBackground/Layer1"]
+z_index = -51
+scale = Vector2(0.660985, 0.5625)
+texture = ExtResource("6_d8w1d")
+centered = false
+
+[node name="Clouds" type="Sprite2D" parent="ParallaxBackground/Layer1"]
+scale = Vector2(0.660985, 0.5625)
+texture = ExtResource("7_ff34c")
+centered = false
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(240, 360)
+script = ExtResource("9_ejq5o")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("10_wwn0w")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(3, -2)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_50no6")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
