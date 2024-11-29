@@ -1,28 +1,40 @@
-[gd_scene load_steps=13 format=3 uid="uid://ct8y3u6mrqjr"]
+[gd_scene load_steps=16 format=3 uid="uid://ct8y3u6mrqjr"]
 
-[ext_resource type="Texture2D" uid="uid://g3s17285su7" path="res://sprite/background/bldgs back.png" id="1_0h1g6"]
-[ext_resource type="Script" path="res://scipt/game_loop.gd" id="1_cv2ha"]
-[ext_resource type="Texture2D" uid="uid://cefhx6jn4hpip" path="res://sprite/background/clouds back.png" id="2_4itqu"]
+[ext_resource type="Texture2D" uid="uid://dogo7cx0jyft0" path="res://sprite/background/bldgs_back.png" id="1_0h1g6"]
+[ext_resource type="Script" path="res://script/game_loop.gd" id="1_cv2ha"]
+[ext_resource type="Texture2D" uid="uid://bowphvfenvvth" path="res://sprite/background/clouds_back.png" id="2_4itqu"]
 [ext_resource type="Texture2D" uid="uid://dgwamwl8vy2sy" path="res://sprite/background/bldgs_mid.png" id="3_wt5tx"]
-[ext_resource type="Texture2D" uid="uid://bao0e1w6gefjq" path="res://sprite/background/clouds middle.png" id="4_htqwx"]
+[ext_resource type="Texture2D" uid="uid://cusc844avgbjj" path="res://sprite/background/clouds_mid.png" id="4_htqwx"]
 [ext_resource type="Texture2D" uid="uid://d1psxj6s8wui3" path="res://sprite/background/bldgs_front.png" id="5_xbq0l"]
 [ext_resource type="Texture2D" uid="uid://dqsl8d8hmo6h" path="res://sprite/background/main.png" id="6_d8w1d"]
-[ext_resource type="Texture2D" uid="uid://bm5lr4hgdej2h" path="res://sprite/background/clouds front.png" id="7_ff34c"]
-[ext_resource type="Script" path="res://scipt/player.gd" id="9_ejq5o"]
+[ext_resource type="Texture2D" uid="uid://c761i3tkn46i7" path="res://sprite/background/clouds_front.png" id="7_ff34c"]
+[ext_resource type="Script" path="res://script/player.gd" id="9_ejq5o"]
 [ext_resource type="Texture2D" uid="uid://cryvuk2hpgm81" path="res://sprite/crow 64x64.png" id="10_wwn0w"]
+[ext_resource type="Script" path="res://script/pillar_spawner.gd" id="11_p7cnv"]
 
 [sub_resource type="GDScript" id="GDScript_4pash"]
 resource_name = "ParaBG"
 script/source = "extends ParallaxBackground
 
 func _process(delta: float) -> void:
-	if owner.state == 1:
+	if owner.current_state == GameStateMachine.GameState.RUNNING:
 		scroll_offset.x -= 20 * delta
 "
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_50no6"]
 radius = 31.0
 height = 92.0
+
+[sub_resource type="GDScript" id="GDScript_4fdoq"]
+resource_name = "walls"
+script/source = "extends Area2D
+
+func _on_body_entered(body: Node2D) -> void:
+	if owner.current_state == GameStateMachine.GameState.RUNNING:
+		owner.set_state(GameStateMachine.GameState.DEAD)
+"
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6wsfg"]
 
 [node name="GameLoop" type="Node"]
 script = ExtResource("1_cv2ha")
@@ -81,6 +93,7 @@ centered = false
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(240, 360)
+collision_mask = 14
 script = ExtResource("9_ejq5o")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
@@ -93,4 +106,28 @@ position = Vector2(3, -2)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_50no6")
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Walls" type="Area2D" parent="."]
+collision_layer = 8
+script = SubResource("GDScript_4fdoq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_6wsfg")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
+position = Vector2(0, 720)
+shape = SubResource("WorldBoundaryShape2D_6wsfg")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(240, 360)
+
+[node name="PillarSpawner" type="Node" parent="."]
+script = ExtResource("11_p7cnv")
+
+[node name="Timer" type="Timer" parent="PillarSpawner"]
+wait_time = 4.0
+autostart = true
+
+[connection signal="body_entered" from="Walls" to="Walls" method="_on_body_entered"]
+[connection signal="timeout" from="PillarSpawner/Timer" to="PillarSpawner" method="_on_timer_timeout"]
