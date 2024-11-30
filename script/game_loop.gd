@@ -1,10 +1,10 @@
 extends Node
 class_name GameStateMachine
 
-## REFERENCES
-@onready var player: CharacterBody2D = get_node("Player")
-@onready var parallax: ParallaxBackground = get_node("ParallaxBackground")
-@onready var timer: Timer = $PillarSpawner/Timer
+## REFERENCESa
+@onready var timer: Timer = $PillarSpawnMachine/Timer
+@onready var parallax: ParallaxBackground = $ParallaxBackground
+@onready var player: CharacterBody2D = $Player
 
 
 ## VARIABLES
@@ -39,6 +39,8 @@ func _enter_state(state: GameState):
 		GameState.PAUSED:
 			# run player physics
 			player.set_physics_process(false)
+			# pause parallax scrolling on start
+			parallax.set_process(false)
 		GameState.RUNNING:
 			# run parallax scrolling
 			parallax.set_process(true) 
