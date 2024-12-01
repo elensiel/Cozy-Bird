@@ -12,7 +12,7 @@ func _ready() -> void:
 func _spawn_pillar() -> void:
 	pillar_temp = pillar.instantiate()
 	pillar_temp.position.x = get_viewport().get_visible_rect().end.x + 200
-	pillar_temp.position.y = randf_range(180, 480 - 40)
+	pillar_temp.position.y = randf_range(240, 480 - 40)
 	add_child(pillar_temp)
 
 func _on_timer_timeout() -> void:

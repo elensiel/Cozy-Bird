@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ct8y3u6mrqjr"]
+[gd_scene load_steps=19 format=3 uid="uid://ct8y3u6mrqjr"]
 
 [ext_resource type="Texture2D" uid="uid://dogo7cx0jyft0" path="res://sprite/background/bldgs_back.png" id="1_0h1g6"]
 [ext_resource type="Script" path="res://script/game_loop.gd" id="1_cv2ha"]
@@ -11,6 +11,8 @@
 [ext_resource type="Script" path="res://script/player.gd" id="9_ejq5o"]
 [ext_resource type="Texture2D" uid="uid://cryvuk2hpgm81" path="res://sprite/crow 64x64.png" id="10_wwn0w"]
 [ext_resource type="Script" path="res://script/pillar_spawn_machine.gd" id="11_p7cnv"]
+[ext_resource type="Script" path="res://script/game_manager.gd" id="12_rj5od"]
+[ext_resource type="Theme" uid="uid://bcihif0mi53lh" path="res://resource/menu.tres" id="12_vjlor"]
 
 [sub_resource type="GDScript" id="GDScript_4pash"]
 resource_name = "ParaBG"
@@ -98,7 +100,7 @@ centered = false
 
 [node name="Player" type="CharacterBody2D" parent="."]
 top_level = true
-position = Vector2(240, 360)
+position = Vector2(240, 408)
 collision_mask = 14
 script = ExtResource("9_ejq5o")
 
@@ -114,6 +116,7 @@ shape = SubResource("CapsuleShape2D_50no6")
 
 [node name="Walls" type="Area2D" parent="."]
 collision_layer = 8
+monitorable = false
 script = SubResource("GDScript_4fdoq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
@@ -138,6 +141,21 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PillarSpawnMachine/Despawn"]
 rotation = 1.5708
 shape = SubResource("WorldBoundaryShape2D_abmoc")
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("12_rj5od")
+
+[node name="Label" type="Label" parent="GameManager"]
+offset_left = 224.0
+offset_top = 83.0
+offset_right = 264.0
+offset_bottom = 147.0
+theme = ExtResource("12_vjlor")
+theme_override_font_sizes/font_size = 80
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [connection signal="body_entered" from="Walls" to="Walls" method="_on_body_entered"]
 [connection signal="timeout" from="PillarSpawnMachine/Timer" to="PillarSpawnMachine" method="_on_timer_timeout"]

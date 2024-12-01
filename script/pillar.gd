@@ -1,6 +1,7 @@
 extends Area2D
 
 @onready var main := get_parent().get_parent() as GameStateMachine
+@onready var gm := main.get_node("GameManager") as GameManager
 
 func _physics_process(delta: float) -> void:
 	if main.current_state == GameStateMachine.GameState.RUNNING:
@@ -12,4 +13,5 @@ func _on_kill_body_entered(body: Node2D) -> void:
 
 ## SCORE
 func _on_body_exited(body: Node2D) -> void:
-	pass
+	if main.current_state == GameStateMachine.GameState.RUNNING:
+		gm.inc_score()

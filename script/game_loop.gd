@@ -1,7 +1,8 @@
 extends Node
 class_name GameStateMachine
 
-## REFERENCESa
+
+## REFERENCES
 @onready var timer: Timer = $PillarSpawnMachine/Timer
 @onready var parallax: ParallaxBackground = $ParallaxBackground
 @onready var player: CharacterBody2D = $Player
@@ -11,9 +12,14 @@ class_name GameStateMachine
 enum GameState { PAUSED, RUNNING, DEAD }
 var current_state: GameState
 
+
 ## FUNCTIONS
 func _ready() -> void:
 	set_state(GameState.PAUSED)
+	
+	## disabling some nodes on start
+	parallax.set_process(false) # pause parallax scrolling
+	timer.set_paused(true) # pause timer
 
 func set_state(new_state: GameState):
 	_exit_state(current_state)
@@ -23,29 +29,19 @@ func set_state(new_state: GameState):
 func _exit_state(state: GameState):
 	match state:
 		GameState.PAUSED:
-			# run player physics
-			player.set_physics_process(true)
+			player.set_physics_process(true) # run player physics
 		GameState.RUNNING:
-			# pause parallax scrolling
-			parallax.set_process(false)
-			# pause pillar spawn timer
-			timer.set_paused(true)
+			parallax.set_process(false) # pause parallax scrolling
+			timer.set_paused(true) # pause timer
 		GameState.DEAD:
-			# run player input
-			player.set_process_input(true)
+			player.set_process_input(true) # run player input
 
 func _enter_state(state: GameState):
 	match state:
 		GameState.PAUSED:
-			# run player physics
-			player.set_physics_process(false)
-			# pause parallax scrolling on start
-			parallax.set_process(false)
+			player.set_physics_process(false) # run player physics
 		GameState.RUNNING:
-			# run parallax scrolling
-			parallax.set_process(true) 
-			# run pillar spawn timer
-			timer.set_paused(false)
+			parallax.set_process(true) # run parallax scrolling
+			timer.set_paused(false) # run timer
 		GameState.DEAD:
-			# pause player input
-			player.set_process_input(false)
+			player.set_process_input(false) # pause player input
