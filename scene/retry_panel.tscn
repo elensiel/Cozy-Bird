@@ -6,8 +6,14 @@
 resource_name = "Retry"
 script/source = "extends Node
 
+@onready var gm = get_parent() as GameManager
+
 func _ready() -> void:
 	get_tree().paused = true
+	$Label.text = str(gm.score)
+	
+	if gm.score > gm.high_score:
+		$Label2.visible = true
 
 func _on_retry_pressed() -> void:
 	get_parent().get_parent().set_state(GameStateMachine.GameState.PAUSED)
@@ -18,7 +24,7 @@ func _on_back_pressed() -> void:
 	get_tree().change_scene_to_file(\"res://scene/main_menu.tscn\")
 "
 
-[node name="RetrPanel" type="Node"]
+[node name="RetryPanel" type="Node"]
 process_mode = 2
 script = SubResource("GDScript_kkbd0")
 
@@ -50,6 +56,31 @@ text = "RETRY"
 [node name="Back" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "BACK TO MENU"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 224.0
+offset_top = 83.0
+offset_right = 264.0
+offset_bottom = 147.0
+theme = ExtResource("1_epxu4")
+theme_override_font_sizes/font_size = 80
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="."]
+visible = false
+offset_left = 127.0
+offset_top = 162.0
+offset_right = 354.0
+offset_bottom = 248.0
+theme = ExtResource("1_epxu4")
+theme_override_font_sizes/font_size = 50
+text = "NEW HIGH SCORE!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Retry" to="." method="_on_retry_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
