@@ -1,15 +1,15 @@
 [gd_scene load_steps=19 format=3 uid="uid://ct8y3u6mrqjr"]
 
-[ext_resource type="Texture2D" uid="uid://dogo7cx0jyft0" path="res://sprite/background/bldgs_back.png" id="1_0h1g6"]
+[ext_resource type="Texture2D" uid="uid://cfi8a7pvb4fh8" path="res://sprite/background/bldgs_back.png" id="1_0h1g6"]
 [ext_resource type="Script" path="res://script/game_state_machine.gd" id="1_cv2ha"]
-[ext_resource type="Texture2D" uid="uid://bowphvfenvvth" path="res://sprite/background/clouds_back.png" id="2_4itqu"]
-[ext_resource type="Texture2D" uid="uid://dgwamwl8vy2sy" path="res://sprite/background/bldgs_mid.png" id="3_wt5tx"]
-[ext_resource type="Texture2D" uid="uid://cusc844avgbjj" path="res://sprite/background/clouds_mid.png" id="4_htqwx"]
-[ext_resource type="Texture2D" uid="uid://d1psxj6s8wui3" path="res://sprite/background/bldgs_front.png" id="5_xbq0l"]
-[ext_resource type="Texture2D" uid="uid://dqsl8d8hmo6h" path="res://sprite/background/main.png" id="6_d8w1d"]
-[ext_resource type="Texture2D" uid="uid://c761i3tkn46i7" path="res://sprite/background/clouds_front.png" id="7_ff34c"]
+[ext_resource type="Texture2D" uid="uid://dm8oxb2m64jf1" path="res://sprite/background/clouds_back.png" id="2_4itqu"]
+[ext_resource type="Texture2D" uid="uid://6trdrvel2aaa" path="res://sprite/background/bldgs_mid.png" id="3_wt5tx"]
+[ext_resource type="Texture2D" uid="uid://xv1wp42xhy2f" path="res://sprite/background/clouds_mid.png" id="4_htqwx"]
+[ext_resource type="Texture2D" uid="uid://bddqls33gfcub" path="res://sprite/background/bldgs_front.png" id="5_xbq0l"]
+[ext_resource type="Texture2D" uid="uid://b8b42sfhd3myw" path="res://sprite/background/main.png" id="6_d8w1d"]
+[ext_resource type="Texture2D" uid="uid://cplbjugav7vhx" path="res://sprite/background/clouds_front.png" id="7_ff34c"]
 [ext_resource type="Script" path="res://script/player.gd" id="9_ejq5o"]
-[ext_resource type="Texture2D" uid="uid://cryvuk2hpgm81" path="res://sprite/crow 64x64.png" id="10_wwn0w"]
+[ext_resource type="Texture2D" uid="uid://c8pebhhjl0m0j" path="res://sprite/crow 64x64.png" id="10_wwn0w"]
 [ext_resource type="Script" path="res://script/pillar_spawn_machine.gd" id="11_p7cnv"]
 [ext_resource type="Script" path="res://script/game_manager.gd" id="12_rj5od"]
 [ext_resource type="Theme" uid="uid://bcihif0mi53lh" path="res://resource/menu.tres" id="12_vjlor"]
@@ -120,6 +120,7 @@ shape = SubResource("CapsuleShape2D_50no6")
 [node name="Walls" type="Area2D" parent="."]
 process_mode = 1
 collision_layer = 8
+input_pickable = false
 monitorable = false
 script = SubResource("GDScript_4fdoq")
 
@@ -140,8 +141,10 @@ wait_time = 3.5
 autostart = true
 
 [node name="Despawn" type="Area2D" parent="PillarSpawnMachine"]
-collision_layer = 4
+collision_layer = 0
 collision_mask = 2
+input_pickable = false
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PillarSpawnMachine/Despawn"]
 rotation = 1.5708
