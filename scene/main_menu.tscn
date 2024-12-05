@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dlx1yfg21pbve"]
+[gd_scene load_steps=5 format=3 uid="uid://dlx1yfg21pbve"]
 
 [ext_resource type="Texture2D" uid="uid://b6jklhaxnjwcm" path="res://sprite/menu bg.png" id="1_3n8pn"]
 [ext_resource type="Script" path="res://script/main_menu.gd" id="1_76leo"]
 [ext_resource type="Theme" uid="uid://bcihif0mi53lh" path="res://resource/menu.tres" id="2_xwpse"]
+[ext_resource type="AudioStream" uid="uid://3xra2sxxu5o" path="res://audio/sfx/button_press.wav" id="4_nxbtr"]
 
 [node name="MainMenu" type="Node"]
 script = ExtResource("1_76leo")
@@ -37,6 +38,21 @@ text = "PLAY"
 [node name="Quit" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "QUIT"
+
+[node name="Label" type="Label" parent="."]
+offset_top = 146.0
+offset_right = 480.0
+offset_bottom = 275.0
+theme = ExtResource("2_xwpse")
+theme_override_font_sizes/font_size = 50
+text = "HIGH SCORE: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_nxbtr")
+bus = &"Button Press"
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

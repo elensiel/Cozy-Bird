@@ -7,7 +7,7 @@ class_name GameStateMachine
 @onready var game_manager: GameManager = $GameManager
 @onready var parallax: ParallaxBackground = $ParallaxBackground
 @onready var pause_panel: PackedScene = preload("res://scene/pause_panel.tscn")
-@onready var player: CharacterBody2D = $Player
+@onready var player: CharacterBody2D = $Player as Player
 @onready var timer: Timer = $PillarSpawnMachine/Timer
 
 
@@ -16,6 +16,7 @@ enum GameState { PAUSED, RUNNING, DEAD }
 var current_state: GameState
 var pause_panel_temp: Node
 var start: bool = false
+var jumped: bool = false
 
 
 ## FUNCTIONS
@@ -63,5 +64,9 @@ func _enter_state(state: GameState):
 			timer.set_paused(false) # run timer
 		GameState.DEAD:
 			player.set_process_input(false) # pause player input
-			game_manager.save_high_score()
-			death_timer.start() # start death timer
+			if not jumped:
+				jumped = true
+				player.jump()
+			
+			game_manager.save_high_score() 
+			death_timer.start()

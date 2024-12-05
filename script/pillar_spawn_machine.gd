@@ -19,4 +19,3 @@ func _on_timer_timeout() -> void:
 
 func _on_despawn_area_entered(area: Area2D) -> void:
 	area.get_parent().queue_free()
-	print("freed")

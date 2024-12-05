@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ct8y3u6mrqjr"]
+[gd_scene load_steps=30 format=3 uid="uid://ct8y3u6mrqjr"]
 
 [ext_resource type="Texture2D" uid="uid://cfi8a7pvb4fh8" path="res://sprite/background/bldgs_back.png" id="1_0h1g6"]
 [ext_resource type="Script" path="res://script/game_state_machine.gd" id="1_cv2ha"]
@@ -11,8 +11,17 @@
 [ext_resource type="Script" path="res://script/player.gd" id="9_ejq5o"]
 [ext_resource type="Texture2D" uid="uid://c8pebhhjl0m0j" path="res://sprite/crow 64x64.png" id="10_wwn0w"]
 [ext_resource type="Script" path="res://script/pillar_spawn_machine.gd" id="11_p7cnv"]
+[ext_resource type="AudioStream" uid="uid://csnxfmchgeybm" path="res://audio/sfx/flaps/flap_1.wav" id="11_qn4a8"]
+[ext_resource type="AudioStream" uid="uid://bym75hppj0l40" path="res://audio/sfx/flaps/flap_2.wav" id="12_avuh0"]
 [ext_resource type="Script" path="res://script/game_manager.gd" id="12_rj5od"]
 [ext_resource type="Theme" uid="uid://bcihif0mi53lh" path="res://resource/menu.tres" id="12_vjlor"]
+[ext_resource type="AudioStream" uid="uid://iibsdurnoxyw" path="res://audio/sfx/flaps/flap_3.wav" id="13_wrvs0"]
+[ext_resource type="AudioStream" uid="uid://bydi118jjsq28" path="res://audio/sfx/flaps/flap_4.wav" id="14_3k6q4"]
+[ext_resource type="AudioStream" uid="uid://cjayu2decyges" path="res://audio/sfx/caws/caw_1.wav" id="15_yeqfo"]
+[ext_resource type="AudioStream" uid="uid://fiuxbp2as8e3" path="res://audio/sfx/caws/caw_2.wav" id="16_qkm3p"]
+[ext_resource type="AudioStream" uid="uid://c3hk3qt0ahfuq" path="res://audio/sfx/caws/caw_3.wav" id="17_6esw4"]
+[ext_resource type="AudioStream" uid="uid://crt8cfrutvpro" path="res://audio/sfx/caws/caw_4.wav" id="18_lg101"]
+[ext_resource type="AudioStream" uid="uid://di86ufhgfyljx" path="res://audio/sfx/caws/caw_5.wav" id="19_0t2d8"]
 
 [sub_resource type="GDScript" id="GDScript_4pash"]
 resource_name = "ParaBG"
@@ -25,9 +34,7 @@ func _process(delta: float) -> void:
 	scroll_offset.x -= 20.0 * delta
 "
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_50no6"]
-radius = 31.0
-height = 92.0
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_abmoc"]
 
 [sub_resource type="GDScript" id="GDScript_4fdoq"]
 resource_name = "walls"
@@ -40,7 +47,24 @@ func _on_body_entered(body: Node2D) -> void:
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6wsfg"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_abmoc"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_50no6"]
+radius = 31.0
+height = 92.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rlhh8"]
+streams_count = 4
+stream_0/stream = ExtResource("11_qn4a8")
+stream_1/stream = ExtResource("12_avuh0")
+stream_2/stream = ExtResource("13_wrvs0")
+stream_3/stream = ExtResource("14_3k6q4")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bpcsc"]
+streams_count = 5
+stream_0/stream = ExtResource("15_yeqfo")
+stream_1/stream = ExtResource("16_qkm3p")
+stream_2/stream = ExtResource("17_6esw4")
+stream_3/stream = ExtResource("18_lg101")
+stream_4/stream = ExtResource("19_0t2d8")
 
 [node name="GameLoop" type="Node"]
 process_mode = 3
@@ -66,6 +90,12 @@ scale = Vector2(0.660985, 0.5625)
 texture = ExtResource("2_4itqu")
 centered = false
 
+[node name="Main" type="Sprite2D" parent="ParallaxBackground/Back"]
+z_index = -51
+scale = Vector2(0.660985, 0.5625)
+texture = ExtResource("6_d8w1d")
+centered = false
+
 [node name="Middle" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.4, 1)
 motion_mirroring = Vector2(1745, 2.08189e-12)
@@ -89,16 +119,43 @@ scale = Vector2(0.660985, 0.5625)
 texture = ExtResource("5_xbq0l")
 centered = false
 
-[node name="Main" type="Sprite2D" parent="ParallaxBackground/Front"]
-z_index = -51
-scale = Vector2(0.660985, 0.5625)
-texture = ExtResource("6_d8w1d")
-centered = false
-
 [node name="Clouds" type="Sprite2D" parent="ParallaxBackground/Front"]
 scale = Vector2(0.660985, 0.5625)
 texture = ExtResource("7_ff34c")
 centered = false
+
+[node name="PillarSpawnMachine" type="Node" parent="."]
+process_mode = 1
+script = ExtResource("11_p7cnv")
+
+[node name="Timer" type="Timer" parent="PillarSpawnMachine"]
+wait_time = 3.25
+autostart = true
+
+[node name="Despawn" type="Area2D" parent="PillarSpawnMachine"]
+collision_layer = 0
+collision_mask = 2
+input_pickable = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PillarSpawnMachine/Despawn"]
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_abmoc")
+
+[node name="Walls" type="Area2D" parent="."]
+process_mode = 1
+collision_layer = 8
+input_pickable = false
+monitorable = false
+script = SubResource("GDScript_4fdoq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_6wsfg")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
+position = Vector2(0, 720)
+shape = SubResource("WorldBoundaryShape2D_6wsfg")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 process_mode = 1
@@ -117,38 +174,13 @@ position = Vector2(3, -2)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_50no6")
 
-[node name="Walls" type="Area2D" parent="."]
-process_mode = 1
-collision_layer = 8
-input_pickable = false
-monitorable = false
-script = SubResource("GDScript_4fdoq")
+[node name="Flap" type="AudioStreamPlayer2D" parent="Player"]
+stream = SubResource("AudioStreamRandomizer_rlhh8")
+bus = &"Flap"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
-rotation = 3.14159
-shape = SubResource("WorldBoundaryShape2D_6wsfg")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
-position = Vector2(0, 720)
-shape = SubResource("WorldBoundaryShape2D_6wsfg")
-
-[node name="PillarSpawnMachine" type="Node" parent="."]
-process_mode = 1
-script = ExtResource("11_p7cnv")
-
-[node name="Timer" type="Timer" parent="PillarSpawnMachine"]
-wait_time = 3.5
-autostart = true
-
-[node name="Despawn" type="Area2D" parent="PillarSpawnMachine"]
-collision_layer = 0
-collision_mask = 2
-input_pickable = false
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PillarSpawnMachine/Despawn"]
-rotation = 1.5708
-shape = SubResource("WorldBoundaryShape2D_abmoc")
+[node name="Caw" type="AudioStreamPlayer2D" parent="Player"]
+stream = SubResource("AudioStreamRandomizer_bpcsc")
+bus = &"Caw"
 
 [node name="GameManager" type="Node" parent="."]
 process_mode = 1
@@ -168,10 +200,10 @@ autowrap_mode = 2
 
 [node name="DeathTimer" type="Timer" parent="."]
 process_mode = 1
-wait_time = 3.0
+wait_time = 2.0
 one_shot = true
 
-[connection signal="body_entered" from="Walls" to="Walls" method="_on_body_entered"]
 [connection signal="timeout" from="PillarSpawnMachine/Timer" to="PillarSpawnMachine" method="_on_timer_timeout"]
 [connection signal="area_entered" from="PillarSpawnMachine/Despawn" to="PillarSpawnMachine" method="_on_despawn_area_entered"]
+[connection signal="body_entered" from="Walls" to="Walls" method="_on_body_entered"]
 [connection signal="timeout" from="DeathTimer" to="GameManager" method="_on_death_timer_timeout"]
