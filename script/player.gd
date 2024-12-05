@@ -13,6 +13,12 @@ func _input(event: InputEvent) -> void:
 		if main.current_state == GameStateMachine.GameState.PAUSED:
 			main.set_state(GameStateMachine.GameState.RUNNING)
 		_jump()
+	elif event.is_action_pressed("pause"):
+		match main.current_state:
+			GameStateMachine.GameState.RUNNING:
+				main.set_state(GameStateMachine.GameState.PAUSED)
+			GameStateMachine.GameState.PAUSED:
+				main.set_state(GameStateMachine.GameState.RUNNING)
 
 func _physics_process(delta: float) -> void:
 	## gravity

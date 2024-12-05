@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://script/pillar.gd" id="1_oxuv4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_naant"]
-size = Vector2(328, 71.9999)
+size = Vector2(512, 71.9999)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_etfxw"]
 size = Vector2(370, 1250)
@@ -31,7 +31,7 @@ texture = ExtResource("1_o4pqh")
 flip_v = true
 
 [node name="Score" type="CollisionShape2D" parent="."]
-position = Vector2(-36, 3.21865e-06)
+position = Vector2(-35.9999, 20)
 rotation = -1.5708
 shape = SubResource("RectangleShape2D_naant")
 
