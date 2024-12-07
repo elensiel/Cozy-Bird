@@ -2,7 +2,7 @@ extends Node
 class_name GameManager
 
 @onready var label: Label = $Label
-@onready var try: PackedScene = preload("res://scene/retry_panel.tscn")
+@onready var try: Node = preload("res://scene/retry_panel.tscn").instantiate()
 
 var SAVE_PATH: String = OS.get_user_data_dir() + "/save/score.bin"
 var score: int = 0
@@ -39,7 +39,6 @@ func save_high_score() -> void:
 		print("Error: Could not open file for writing.")
 
 func _on_death_timer_timeout() -> void:
-	var try_temp: Node = try.instantiate()
-	add_child(try_temp)
+	add_child(try)
 	
 	label.visible = false

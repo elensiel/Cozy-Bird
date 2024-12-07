@@ -6,7 +6,6 @@ class_name GameStateMachine
 @onready var death_timer: Timer = $DeathTimer
 @onready var game_manager: GameManager = $GameManager
 @onready var parallax: ParallaxBackground = $ParallaxBackground
-@onready var pause_button: Button = $PauseButton
 @onready var pause_panel: PackedScene = preload("res://scene/pause_panel.tscn")
 @onready var player: CharacterBody2D = $Player as Player
 @onready var timer: Timer = $PillarSpawnMachine/Timer
