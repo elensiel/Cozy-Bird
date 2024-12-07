@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Cozy Bird Rebuild"
 run/main_scene="res://scene/main_menu.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 config/icon="res://icon.png"
 config/windows_native_icon="res://icon256.ico"
 
@@ -26,6 +26,10 @@ window/size/viewport_width=480
 window/size/viewport_height=720
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
+
+[dotnet]
+
+project/assembly_name="Cozy Bird Rebuild"
 
 [gui]
 

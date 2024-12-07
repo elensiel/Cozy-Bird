@@ -3,3 +3,6 @@
 *.import
 *.idsig
 save/
+*.csproj
+*.sln
+.vscode/

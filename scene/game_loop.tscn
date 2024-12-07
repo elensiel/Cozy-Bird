@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cfi8a7pvb4fh8" path="res://sprite/background/bldgs_back.png" id="1_0h1g6"]
 [ext_resource type="Script" path="res://script/game_state_machine.gd" id="1_cv2ha"]
 [ext_resource type="Texture2D" uid="uid://dm8oxb2m64jf1" path="res://sprite/background/clouds_back.png" id="2_4itqu"]
+[ext_resource type="Script" path="res://script_sharp/ParallaxBackground.cs" id="2_haunf"]
 [ext_resource type="Texture2D" uid="uid://6trdrvel2aaa" path="res://sprite/background/bldgs_mid.png" id="3_wt5tx"]
 [ext_resource type="Texture2D" uid="uid://xv1wp42xhy2f" path="res://sprite/background/clouds_mid.png" id="4_htqwx"]
 [ext_resource type="Texture2D" uid="uid://bddqls33gfcub" path="res://sprite/background/bldgs_front.png" id="5_xbq0l"]
@@ -23,17 +24,6 @@
 [ext_resource type="AudioStream" uid="uid://crt8cfrutvpro" path="res://audio/sfx/caws/caw_4.wav" id="18_lg101"]
 [ext_resource type="AudioStream" uid="uid://di86ufhgfyljx" path="res://audio/sfx/caws/caw_5.wav" id="19_0t2d8"]
 [ext_resource type="AudioStream" uid="uid://3xra2sxxu5o" path="res://audio/sfx/button_press.wav" id="23_x0tlq"]
-
-[sub_resource type="GDScript" id="GDScript_4pash"]
-resource_name = "ParaBG"
-script/source = "extends ParallaxBackground
-
-func _ready() -> void:
-	scroll_base_offset.x = randi() % 2000
-
-func _process(delta: float) -> void:
-	scroll_offset.x -= 20.0 * delta
-"
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_abmoc"]
 
@@ -86,7 +76,7 @@ script = ExtResource("1_cv2ha")
 process_mode = 1
 follow_viewport_enabled = true
 scroll_ignore_camera_zoom = true
-script = SubResource("GDScript_4pash")
+script = ExtResource("2_haunf")
 
 [node name="Back" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.2, 1)
