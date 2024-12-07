@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://ct8y3u6mrqjr"]
+[gd_scene load_steps=32 format=3 uid="uid://ct8y3u6mrqjr"]
 
 [ext_resource type="Texture2D" uid="uid://cfi8a7pvb4fh8" path="res://sprite/background/bldgs_back.png" id="1_0h1g6"]
 [ext_resource type="Script" path="res://script/game_state_machine.gd" id="1_cv2ha"]
@@ -22,6 +22,7 @@
 [ext_resource type="AudioStream" uid="uid://c3hk3qt0ahfuq" path="res://audio/sfx/caws/caw_3.wav" id="17_6esw4"]
 [ext_resource type="AudioStream" uid="uid://crt8cfrutvpro" path="res://audio/sfx/caws/caw_4.wav" id="18_lg101"]
 [ext_resource type="AudioStream" uid="uid://di86ufhgfyljx" path="res://audio/sfx/caws/caw_5.wav" id="19_0t2d8"]
+[ext_resource type="AudioStream" uid="uid://3xra2sxxu5o" path="res://audio/sfx/button_press.wav" id="23_x0tlq"]
 
 [sub_resource type="GDScript" id="GDScript_4pash"]
 resource_name = "ParaBG"
@@ -65,6 +66,17 @@ stream_1/stream = ExtResource("16_qkm3p")
 stream_2/stream = ExtResource("17_6esw4")
 stream_3/stream = ExtResource("18_lg101")
 stream_4/stream = ExtResource("19_0t2d8")
+
+[sub_resource type="GDScript" id="GDScript_a3asy"]
+resource_name = "PauseButton"
+script/source = "extends Button
+
+@onready var audio: AudioStreamPlayer2D = $AudioStreamPlayer2D
+
+func _on_pressed() -> void:
+	audio.play()
+	owner.set_state(GameStateMachine.GameState.PAUSED)
+"
 
 [node name="GameLoop" type="Node"]
 process_mode = 3
@@ -176,11 +188,23 @@ shape = SubResource("CapsuleShape2D_50no6")
 
 [node name="Flap" type="AudioStreamPlayer2D" parent="Player"]
 stream = SubResource("AudioStreamRandomizer_rlhh8")
-bus = &"Flap"
 
 [node name="Caw" type="AudioStreamPlayer2D" parent="Player"]
 stream = SubResource("AudioStreamRandomizer_bpcsc")
-bus = &"Caw"
+
+[node name="PauseButton" type="Button" parent="."]
+process_mode = 1
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 65.0
+offset_bottom = 65.0
+action_mode = 0
+text = "||"
+script = SubResource("GDScript_a3asy")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="PauseButton"]
+stream = ExtResource("23_x0tlq")
+bus = &"Button Press"
 
 [node name="GameManager" type="Node" parent="."]
 process_mode = 1
@@ -206,4 +230,5 @@ one_shot = true
 [connection signal="timeout" from="PillarSpawnMachine/Timer" to="PillarSpawnMachine" method="_on_timer_timeout"]
 [connection signal="area_entered" from="PillarSpawnMachine/Despawn" to="PillarSpawnMachine" method="_on_despawn_area_entered"]
 [connection signal="body_entered" from="Walls" to="Walls" method="_on_body_entered"]
+[connection signal="pressed" from="PauseButton" to="PauseButton" method="_on_pressed"]
 [connection signal="timeout" from="DeathTimer" to="GameManager" method="_on_death_timer_timeout"]

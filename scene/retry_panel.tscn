@@ -92,7 +92,6 @@ autowrap_mode = 2
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_hsjct")
-bus = &"Button Press"
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Retry" to="." method="_on_retry_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

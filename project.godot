@@ -16,10 +16,9 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.png"
 config/windows_native_icon="res://icon256.ico"
 
-[autoload]
+[audio]
 
-DefaultBusLayout="*res://resource/default_bus_layout.tres"
-Menu="*res://resource/menu.tres"
+buses/default_bus_layout="res://resource/default_bus_layout.tres"
 
 [display]
 
@@ -30,6 +29,7 @@ window/stretch/aspect="expand"
 
 [gui]
 
+theme/custom="res://resource/menu.tres"
 theme/custom_font="res://resource/m5x7.ttf"
 
 [input]
