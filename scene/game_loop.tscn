@@ -1,28 +1,29 @@
-[gd_scene load_steps=32 format=3 uid="uid://ct8y3u6mrqjr"]
+[gd_scene load_steps=33 format=3 uid="uid://ct8y3u6mrqjr"]
 
-[ext_resource type="Texture2D" uid="uid://cfi8a7pvb4fh8" path="res://sprite/background/bldgs_back.png" id="1_0h1g6"]
+[ext_resource type="Texture2D" uid="uid://dogo7cx0jyft0" path="res://sprite/background/bldgs_back.png" id="1_0h1g6"]
 [ext_resource type="Script" path="res://script/game_state_machine.gd" id="1_cv2ha"]
-[ext_resource type="Texture2D" uid="uid://dm8oxb2m64jf1" path="res://sprite/background/clouds_back.png" id="2_4itqu"]
-[ext_resource type="Texture2D" uid="uid://6trdrvel2aaa" path="res://sprite/background/bldgs_mid.png" id="3_wt5tx"]
-[ext_resource type="Texture2D" uid="uid://xv1wp42xhy2f" path="res://sprite/background/clouds_mid.png" id="4_htqwx"]
-[ext_resource type="Texture2D" uid="uid://bddqls33gfcub" path="res://sprite/background/bldgs_front.png" id="5_xbq0l"]
-[ext_resource type="Texture2D" uid="uid://b8b42sfhd3myw" path="res://sprite/background/main.png" id="6_d8w1d"]
-[ext_resource type="Texture2D" uid="uid://cplbjugav7vhx" path="res://sprite/background/clouds_front.png" id="7_ff34c"]
+[ext_resource type="Texture2D" uid="uid://bowphvfenvvth" path="res://sprite/background/clouds_back.png" id="2_4itqu"]
+[ext_resource type="Texture2D" uid="uid://dgwamwl8vy2sy" path="res://sprite/background/bldgs_mid.png" id="3_wt5tx"]
+[ext_resource type="Texture2D" uid="uid://cusc844avgbjj" path="res://sprite/background/clouds_mid.png" id="4_htqwx"]
+[ext_resource type="Texture2D" uid="uid://d1psxj6s8wui3" path="res://sprite/background/bldgs_front.png" id="5_xbq0l"]
+[ext_resource type="Texture2D" uid="uid://dqsl8d8hmo6h" path="res://sprite/background/main.png" id="6_d8w1d"]
+[ext_resource type="Texture2D" uid="uid://c761i3tkn46i7" path="res://sprite/background/clouds_front.png" id="7_ff34c"]
 [ext_resource type="Script" path="res://script/player.gd" id="9_ejq5o"]
-[ext_resource type="Texture2D" uid="uid://c8pebhhjl0m0j" path="res://sprite/crow 64x64.png" id="10_wwn0w"]
+[ext_resource type="Texture2D" uid="uid://cryvuk2hpgm81" path="res://sprite/crow 64x64.png" id="10_wwn0w"]
 [ext_resource type="Script" path="res://script/pillar_spawn_machine.gd" id="11_p7cnv"]
-[ext_resource type="AudioStream" uid="uid://csnxfmchgeybm" path="res://audio/sfx/flaps/flap_1.wav" id="11_qn4a8"]
-[ext_resource type="AudioStream" uid="uid://bym75hppj0l40" path="res://audio/sfx/flaps/flap_2.wav" id="12_avuh0"]
+[ext_resource type="AudioStream" uid="uid://djefueu10ud8a" path="res://audio/sfx/flaps/flap_1.wav" id="11_qn4a8"]
+[ext_resource type="AudioStream" uid="uid://duusc2n8nnaka" path="res://audio/sfx/flaps/flap_2.wav" id="12_avuh0"]
 [ext_resource type="Script" path="res://script/game_manager.gd" id="12_rj5od"]
 [ext_resource type="Theme" uid="uid://bcihif0mi53lh" path="res://resource/menu.tres" id="12_vjlor"]
-[ext_resource type="AudioStream" uid="uid://iibsdurnoxyw" path="res://audio/sfx/flaps/flap_3.wav" id="13_wrvs0"]
-[ext_resource type="AudioStream" uid="uid://bydi118jjsq28" path="res://audio/sfx/flaps/flap_4.wav" id="14_3k6q4"]
-[ext_resource type="AudioStream" uid="uid://cjayu2decyges" path="res://audio/sfx/caws/caw_1.wav" id="15_yeqfo"]
-[ext_resource type="AudioStream" uid="uid://fiuxbp2as8e3" path="res://audio/sfx/caws/caw_2.wav" id="16_qkm3p"]
-[ext_resource type="AudioStream" uid="uid://c3hk3qt0ahfuq" path="res://audio/sfx/caws/caw_3.wav" id="17_6esw4"]
-[ext_resource type="AudioStream" uid="uid://crt8cfrutvpro" path="res://audio/sfx/caws/caw_4.wav" id="18_lg101"]
-[ext_resource type="AudioStream" uid="uid://di86ufhgfyljx" path="res://audio/sfx/caws/caw_5.wav" id="19_0t2d8"]
-[ext_resource type="AudioStream" uid="uid://3xra2sxxu5o" path="res://audio/sfx/button_press.wav" id="23_x0tlq"]
+[ext_resource type="AudioStream" uid="uid://bkxqkw8wwp145" path="res://audio/sfx/flaps/flap_3.wav" id="13_wrvs0"]
+[ext_resource type="AudioStream" uid="uid://rdvu82s8kd4p" path="res://audio/sfx/flaps/flap_4.wav" id="14_3k6q4"]
+[ext_resource type="AudioStream" uid="uid://bbj36t0idt1h5" path="res://audio/sfx/caws/caw_1.wav" id="15_yeqfo"]
+[ext_resource type="AudioStream" uid="uid://cictmkqls3dx8" path="res://audio/sfx/caws/caw_2.wav" id="16_qkm3p"]
+[ext_resource type="AudioStream" uid="uid://chvt0ax2h3v0l" path="res://audio/sfx/caws/caw_3.wav" id="17_6esw4"]
+[ext_resource type="AudioStream" uid="uid://dnxt3jkxgjbot" path="res://audio/sfx/caws/caw_4.wav" id="18_lg101"]
+[ext_resource type="AudioStream" uid="uid://cemn2rl86qlg6" path="res://audio/sfx/caws/caw_5.wav" id="19_0t2d8"]
+[ext_resource type="Theme" uid="uid://6u6whwgiyxvv" path="res://resource/button-32x32.tres" id="21_0b7pq"]
+[ext_resource type="AudioStream" uid="uid://8six3penfsmq" path="res://audio/sfx/button_press.wav" id="23_x0tlq"]
 
 [sub_resource type="GDScript" id="GDScript_4pash"]
 resource_name = "ParaBG"
@@ -198,6 +199,7 @@ offset_left = 15.0
 offset_top = 15.0
 offset_right = 65.0
 offset_bottom = 65.0
+theme = ExtResource("21_0b7pq")
 action_mode = 0
 text = "||"
 script = SubResource("GDScript_a3asy")

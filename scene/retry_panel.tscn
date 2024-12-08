@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dqugdw0t852hf"]
 
 [ext_resource type="Theme" uid="uid://bcihif0mi53lh" path="res://resource/menu.tres" id="1_epxu4"]
-[ext_resource type="AudioStream" uid="uid://3xra2sxxu5o" path="res://audio/sfx/button_press.wav" id="2_hsjct"]
+[ext_resource type="AudioStream" uid="uid://8six3penfsmq" path="res://audio/sfx/button_press.wav" id="2_hsjct"]
 
 [sub_resource type="GDScript" id="GDScript_kkbd0"]
 resource_name = "Retry"
