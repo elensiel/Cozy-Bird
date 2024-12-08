@@ -14,7 +14,6 @@
 [ext_resource type="Script" path="res://script/pillar_spawn_machine.gd" id="11_p7cnv"]
 [ext_resource type="AudioStream" uid="uid://csnxfmchgeybm" path="res://audio/sfx/flaps/flap_1.wav" id="11_qn4a8"]
 [ext_resource type="AudioStream" uid="uid://bym75hppj0l40" path="res://audio/sfx/flaps/flap_2.wav" id="12_avuh0"]
-[ext_resource type="Script" path="res://script/game_manager.gd" id="12_rj5od"]
 [ext_resource type="Theme" uid="uid://bcihif0mi53lh" path="res://resource/menu.tres" id="12_vjlor"]
 [ext_resource type="AudioStream" uid="uid://iibsdurnoxyw" path="res://audio/sfx/flaps/flap_3.wav" id="13_wrvs0"]
 [ext_resource type="AudioStream" uid="uid://bydi118jjsq28" path="res://audio/sfx/flaps/flap_4.wav" id="14_3k6q4"]
@@ -23,6 +22,7 @@
 [ext_resource type="AudioStream" uid="uid://c3hk3qt0ahfuq" path="res://audio/sfx/caws/caw_3.wav" id="17_6esw4"]
 [ext_resource type="AudioStream" uid="uid://crt8cfrutvpro" path="res://audio/sfx/caws/caw_4.wav" id="18_lg101"]
 [ext_resource type="AudioStream" uid="uid://di86ufhgfyljx" path="res://audio/sfx/caws/caw_5.wav" id="19_0t2d8"]
+[ext_resource type="Script" path="res://script_sharp/GameManager.cs" id="23_n7080"]
 [ext_resource type="AudioStream" uid="uid://3xra2sxxu5o" path="res://audio/sfx/button_press.wav" id="23_x0tlq"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_abmoc"]
@@ -198,7 +198,7 @@ bus = &"Button Press"
 
 [node name="GameManager" type="Node" parent="."]
 process_mode = 1
-script = ExtResource("12_rj5od")
+script = ExtResource("23_n7080")
 
 [node name="Label" type="Label" parent="GameManager"]
 offset_left = 224.0

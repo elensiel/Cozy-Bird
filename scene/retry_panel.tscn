@@ -1,38 +1,12 @@
 [gd_scene load_steps=4 format=3 uid="uid://dqugdw0t852hf"]
 
 [ext_resource type="Theme" uid="uid://bcihif0mi53lh" path="res://resource/menu.tres" id="1_epxu4"]
+[ext_resource type="Script" path="res://script_sharp/RetryPanel.cs" id="1_fidox"]
 [ext_resource type="AudioStream" uid="uid://3xra2sxxu5o" path="res://audio/sfx/button_press.wav" id="2_hsjct"]
-
-[sub_resource type="GDScript" id="GDScript_kkbd0"]
-resource_name = "Retry"
-script/source = "extends Node
-
-@onready var gm = get_parent() as GameManager
-@onready var audio: AudioStreamPlayer2D = $AudioStreamPlayer2D
-
-func _ready() -> void:
-	get_tree().paused = true
-	$Label.text = str(gm.score)
-	
-	if gm.score > gm.high_score:
-		$Label2.visible = true
-
-func _on_retry_pressed() -> void:
-	audio.play()
-	await audio.finished
-	get_parent().get_parent().set_state(GameStateMachine.GameState.PAUSED)
-	get_tree().reload_current_scene()
-
-func _on_back_pressed() -> void:
-	audio.play()
-	await audio.finished
-	get_tree().paused = false
-	get_tree().change_scene_to_file(\"res://scene/main_menu.tscn\")
-"
 
 [node name="RetryPanel" type="Node"]
 process_mode = 2
-script = SubResource("GDScript_kkbd0")
+script = ExtResource("1_fidox")
 
 [node name="Panel" type="Panel" parent="."]
 z_index = 1
