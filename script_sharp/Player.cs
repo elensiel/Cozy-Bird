@@ -8,8 +8,7 @@ public partial class Player : CharacterBody2D
     private GameStateMachine _main;
     private Sprite2D _sprite;
 
-    private double _gravityDouble = ProjectSettings.GetSetting("physics/2d/default_gravity").AsDouble();
-    private float _gravity;
+    private float _gravity = (float)ProjectSettings.GetSetting("physics/2d/default_gravity").AsDouble();
     private const float _jumpVelocity = -350.0f;
     private const int _fallSpeed = 1000;
     private const float _rotationSpeed = 0.04f;
@@ -20,7 +19,6 @@ public partial class Player : CharacterBody2D
         _flap = GetNode<AudioStreamPlayer2D>("Flap");
         _main = GetOwner<GameStateMachine>();
         _sprite = GetNode<Sprite2D>("Sprite2D");
-        _gravity = (float)_gravityDouble;
     }
 
     public override void _Input(InputEvent @event)
