@@ -9,7 +9,6 @@ process_mode = 2
 script = ExtResource("1_fidox")
 
 [node name="Panel" type="Panel" parent="."]
-z_index = 1
 offset_right = 480.0
 offset_bottom = 720.0
 
@@ -39,6 +38,17 @@ text = "RETRY"
 layout_mode = 2
 text = "BACK TO MENU"
 
+[node name="Label2" type="Label" parent="."]
+offset_top = 162.0
+offset_right = 480.0
+offset_bottom = 248.0
+theme = ExtResource("1_epxu4")
+theme_override_font_sizes/font_size = 50
+text = "NEW HIGH SCORE!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
 [node name="Label" type="Label" parent="."]
 offset_left = 224.0
 offset_top = 83.0
@@ -47,19 +57,6 @@ offset_bottom = 147.0
 theme = ExtResource("1_epxu4")
 theme_override_font_sizes/font_size = 80
 text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="Label2" type="Label" parent="."]
-visible = false
-offset_left = 127.0
-offset_top = 162.0
-offset_right = 354.0
-offset_bottom = 248.0
-theme = ExtResource("1_epxu4")
-theme_override_font_sizes/font_size = 50
-text = "NEW HIGH SCORE!"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2

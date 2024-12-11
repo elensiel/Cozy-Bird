@@ -1,10 +1,14 @@
 [gd_scene load_steps=8 format=3 uid="uid://cug3hcoxv8hxn"]
 
+[ext_resource type="Script" path="res://script_sharp/Pillar.cs" id="1_3ugg4"]
 [ext_resource type="Texture2D" uid="uid://dyjqclwjqwtpj" path="res://sprite/pillar.png" id="1_o4pqh"]
-[ext_resource type="Script" path="res://script/pillar.gd" id="1_oxuv4"]
 [ext_resource type="AudioStream" uid="uid://bprtrquhyuxlc" path="res://audio/sfx/score.wav" id="3_kldsu"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vkmr6"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_trych"]
+streams_count = 1
+stream_0/stream = ExtResource("3_kldsu")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_etfxw"]
 size = Vector2(370, 1250)
@@ -12,17 +16,18 @@ size = Vector2(370, 1250)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k2dl1"]
 size = Vector2(470, 170)
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_trych"]
-streams_count = 1
-stream_0/stream = ExtResource("3_kldsu")
-
 [node name="Pillar" type="Area2D"]
 position = Vector2(0, 1)
-collision_layer = 0
+collision_layer = 2
 input_pickable = false
-monitorable = false
-script = ExtResource("1_oxuv4")
+audio_bus_name = &"Score"
+script = ExtResource("1_3ugg4")
 metadata/_edit_horizontal_guides_ = [0.0]
+
+[node name="Score" type="CollisionShape2D" parent="."]
+position = Vector2(76.0001, 0)
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_vkmr6")
 
 [node name="Top" type="Sprite2D" parent="."]
 position = Vector2(-6, -364)
@@ -35,15 +40,15 @@ scale = Vector2(0.3, 0.4)
 texture = ExtResource("1_o4pqh")
 flip_v = true
 
-[node name="Score" type="CollisionShape2D" parent="."]
-position = Vector2(76.0001, 0)
-rotation = -1.5708
-shape = SubResource("WorldBoundaryShape2D_vkmr6")
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_trych")
+pitch_scale = 1.2
 
 [node name="Kill" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 5
+collision_layer = 0
+collision_mask = 0
 input_pickable = false
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Kill"]
 position = Vector2(-1.50001, -410)
@@ -65,10 +70,3 @@ position = Vector2(-2, 130)
 rotation = 3.14159
 scale = Vector2(0.3, 0.4)
 shape = SubResource("RectangleShape2D_k2dl1")
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = SubResource("AudioStreamRandomizer_trych")
-pitch_scale = 1.2
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_entered" from="Kill" to="." method="_on_kill_body_entered"]

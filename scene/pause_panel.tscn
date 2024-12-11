@@ -1,27 +1,11 @@
 [gd_scene load_steps=4 format=3 uid="uid://pnq6fwn7udn6"]
 
+[ext_resource type="Script" path="res://script_sharp/PausePanel.cs" id="1_j0tx3"]
 [ext_resource type="Theme" uid="uid://bcihif0mi53lh" path="res://resource/menu.tres" id="1_vhddf"]
 [ext_resource type="AudioStream" uid="uid://3xra2sxxu5o" path="res://audio/sfx/button_press.wav" id="2_o7bgd"]
 
-[sub_resource type="GDScript" id="GDScript_u4dh4"]
-resource_name = "PausePanel"
-script/source = "extends Node
-
-@onready var audio: AudioStreamPlayer2D = $AudioStreamPlayer2D
-
-func _on_continue_pressed() -> void:
-	audio.play()
-	await audio.finished
-	get_parent().set_state(GameStateMachine.GameState.RUNNING)
-
-func _on_quit_pressed() -> void:
-	audio.play()
-	await audio.finished
-	get_tree().change_scene_to_file(\"res://scene/main_menu.tscn\")
-"
-
 [node name="PausePanel" type="Node"]
-script = SubResource("GDScript_u4dh4")
+script = ExtResource("1_j0tx3")
 
 [node name="Panel" type="Panel" parent="."]
 offset_right = 480.0
@@ -66,6 +50,3 @@ autowrap_mode = 2
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_o7bgd")
-
-[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
-[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

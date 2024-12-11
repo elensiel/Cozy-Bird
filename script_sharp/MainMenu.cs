@@ -1,4 +1,3 @@
-using System;
 using Godot;
 
 public partial class MainMenu : Node
@@ -22,8 +21,8 @@ public partial class MainMenu : Node
         Label = GetNode<Label>("Label");
 
         // connecting buttons
-        ButtonPlay.Connect("pressed", Callable.From(OnButtonPressedPlay), (uint)GodotObject.ConnectFlags.Deferred);
-        ButtonQuit.Connect("pressed", Callable.From(OnButtonPressedQuit), (uint)GodotObject.ConnectFlags.Deferred);
+        ButtonPlay.Connect(Button.SignalName.Pressed, Callable.From(OnButtonPressedPlay));
+        ButtonQuit.Connect(Button.SignalName.Pressed, Callable.From(OnButtonPressedQuit));
 
         Label.Text = "HIGH SCORE: " + LoadScore().ToString();
     }
@@ -37,11 +36,20 @@ public partial class MainMenu : Node
         {
             DirAccess.MakeDirAbsolute(Directory); // creates the folder
 
-            FileAccess.Open(Directory + "score.bin", FileAccess.ModeFlags.Write).Store16(0);
-            return 0;
+            if (FileAccess.FileExists(Directory + "score.bin"))
+            {
+                using var fileTemp = FileAccess.Open(Directory + "score.bin", FileAccess.ModeFlags.Write);
+                {
+                    fileTemp.Store16(0);
+                }
+                return 0;
+            }
         }
 
-        return FileAccess.Open(Directory + "score.bin", FileAccess.ModeFlags.Read).Get16();
+        using var file = FileAccess.Open(Directory + "score.bin", FileAccess.ModeFlags.Read);
+        {
+            return file.Get16();
+        }
     }
 
     private async void OnButtonPressedPlay()
