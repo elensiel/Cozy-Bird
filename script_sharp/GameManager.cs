@@ -1,4 +1,5 @@
 using Godot;
+using System;
 using System.IO;
 
 public partial class GameManager : Node
@@ -7,7 +8,6 @@ public partial class GameManager : Node
     private Node _try;
     private Timer _deathTimer;
 
-    private string _savePath = OS.GetUserDataDir() + "/save/score.bin";
     public int Score = 0;
     public int HighScore;
 
@@ -28,38 +28,52 @@ public partial class GameManager : Node
         _label.Text = Score.ToString();
     }
 
-    private int LoadScore()
+    // SAVING AND LOADING 
+    private static string EnsureDirectoryExists()
     {
-        string _directory = OS.GetUserDataDir() + "/save/";
-
-        if (!Directory.Exists(_directory))
+        string directory = OS.GetUserDataDir() + "/save/";
+        if (!Directory.Exists(directory))
         {
-            Directory.CreateDirectory(_directory);
-
-            if (Godot.FileAccess.FileExists(_savePath))
-            {
-                using var file = Godot.FileAccess.Open(_savePath, Godot.FileAccess.ModeFlags.Write);
-                file.Store16(0);
-                return 0;
-            }
+            Directory.CreateDirectory(directory);
         }
+        return directory;
+    }
 
-        using (var file = Godot.FileAccess.Open(_savePath, Godot.FileAccess.ModeFlags.Read))
+    private static Godot.FileAccess OpenFile(Godot.FileAccess.ModeFlags ModeFlags)
+    {
+        string savePath = EnsureDirectoryExists() + "save.bin";
+        return Godot.FileAccess.Open(savePath, ModeFlags);
+    }
+
+    public static int LoadScore()
+    {
+        try
         {
+            using var file = OpenFile(Godot.FileAccess.ModeFlags.Read);
             return file.Get16();
+        }
+        catch (Exception e)
+        {
+            GD.Print("Error loading score: " + e.Message);
+            return 0;
         }
     }
 
     public void SaveHighScore()
     {
-        if (HighScore > Score)
+        if (Score > HighScore)
         {
-            return;
+            HighScore = Score;
+            try
+            {
+                using var file = OpenFile(Godot.FileAccess.ModeFlags.Write);
+                file.Store16((ushort)HighScore);
+            }
+            catch (Exception e)
+            {
+                GD.Print("Error loading score: " + e.Message);
+            }
         }
-
-        HighScore = Score;
-        using var file = Godot.FileAccess.Open(_savePath, Godot.FileAccess.ModeFlags.Write);
-        file.Store16((ushort)HighScore);
     }
 
     private void OnDeathTimerTimeout()

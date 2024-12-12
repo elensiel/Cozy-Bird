@@ -24,32 +24,7 @@ public partial class MainMenu : Node
         ButtonPlay.Connect(Button.SignalName.Pressed, Callable.From(OnButtonPressedPlay));
         ButtonQuit.Connect(Button.SignalName.Pressed, Callable.From(OnButtonPressedQuit));
 
-        Label.Text = "HIGH SCORE: " + LoadScore().ToString();
-    }
-
-    private static int LoadScore()
-    {
-        string Directory = OS.GetUserDataDir() + "/save/";
-
-        // check if folder exists
-        if (!DirAccess.DirExistsAbsolute(Directory))
-        {
-            DirAccess.MakeDirAbsolute(Directory); // creates the folder
-
-            if (FileAccess.FileExists(Directory + "score.bin"))
-            {
-                using var fileTemp = FileAccess.Open(Directory + "score.bin", FileAccess.ModeFlags.Write);
-                {
-                    fileTemp.Store16(0);
-                }
-                return 0;
-            }
-        }
-
-        using var file = FileAccess.Open(Directory + "score.bin", FileAccess.ModeFlags.Read);
-        {
-            return file.Get16();
-        }
+        Label.Text = "HIGH SCORE: " + GameManager.LoadScore().ToString();
     }
 
     private async void OnButtonPressedPlay()
