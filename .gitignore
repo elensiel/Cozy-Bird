@@ -4,3 +4,5 @@
 *.idsig
 save/
 .vscode/
+*.cfg
+*.apk
