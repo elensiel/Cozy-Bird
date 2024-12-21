@@ -6,20 +6,22 @@ public partial class GameManager : Node
 {
     private Label _label;
     private Node _try;
-    private Timer _deathTimer;
 
-    public int Score = 0;
-    public int HighScore;
+    static public int Score = 0;
+    static public int HighScore;
 
     public override void _Ready()
     {
         _label = GetNode<Label>("Label");
-        _deathTimer = GetParent().GetNode<Timer>("DeathTimer");
         _try = ResourceLoader.Load<PackedScene>("res://scene/retry_panel.tscn").Instantiate();
 
-        _deathTimer.Connect(Timer.SignalName.Timeout, Callable.From(OnDeathTimerTimeout));
+        GetParent().GetNode<Timer>("DeathTimer").Connect(Timer.SignalName.Timeout, Callable.From(OnDeathTimerTimeout));
 
+        Score = 0; // reset  cuz its fxxking static u idiot
         HighScore = LoadScore();
+
+        Vector2 viewportSize = GetViewport().GetVisibleRect().Size;
+        _label.Position = new Vector2((viewportSize.X / 2) - (_label.Size.X / 2), viewportSize.Y / 5);
     }
 
     public void IncScore()
@@ -63,7 +65,6 @@ public partial class GameManager : Node
     {
         if (Score > HighScore)
         {
-            HighScore = Score;
             try
             {
                 using var file = OpenFile(Godot.FileAccess.ModeFlags.Write);

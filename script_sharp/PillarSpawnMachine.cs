@@ -4,26 +4,28 @@ public partial class PillarSpawnMachine : Node
 {
     private PackedScene _pillar = ResourceLoader.Load<PackedScene>("res://scene/pillar.tscn");
     private Area2D _pillarTemp;
-    private Timer _timer;
-    private Area2D _despawn;
+
+    private Rect2 _viewport;
 
     public override void _Ready()
     {
-        _timer = GetNode<Timer>("Timer");
-        _despawn = GetNode<Area2D>("Despawn");
+        Area2D _despawn = GetNode<Area2D>("Despawn");
+        _viewport = GetViewport().GetVisibleRect();
 
         Vector2 Position = _despawn.Position;
-        Position.X -= GetViewport().GetVisibleRect().Size.X / 2;
+        Position.X -= _viewport.Size.X / 2;
         _despawn.Position = Position;
 
-        _timer.Connect(Timer.SignalName.Timeout, Callable.From(OnTimerTimeout));
+        GetNode<Timer>("Timer").Connect(Timer.SignalName.Timeout, Callable.From(OnTimerTimeout));
         _despawn.Connect(Area2D.SignalName.AreaEntered, Callable.From((Area2D area) => OnDespawnAreaEntered(area)));
     }
 
     private void SpawnPillar()
     {
         _pillarTemp = (Area2D)_pillar.Instantiate();
-        _pillarTemp.Position = new Vector2(GetViewport().GetVisibleRect().End.X + 200, GD.RandRange(240, 480 - 40));
+        _pillarTemp.Position = _pillarTemp.Position with { X = _viewport.End.X + 200 };
+        _pillarTemp.Position = _pillarTemp.Position with { Y = (float)GD.RandRange(_viewport.Position.Y + (_viewport.Size.Y / 3), _viewport.Size.Y - (_viewport.Size.Y / 4)) };
+
         AddChild(_pillarTemp);
     }
 

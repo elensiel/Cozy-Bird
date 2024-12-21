@@ -1,0 +1,31 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://cuyg6uc2ef55y"]
+
+[ext_resource type="Texture2D" uid="uid://cvjs5qykkntgs" path="res://sprite/ui/button-32x32/hover.png" id="1_la543"]
+[ext_resource type="Texture2D" uid="uid://bkxyba0rl7pv8" path="res://sprite/ui/button-32x32/normal.png" id="2_542h8"]
+[ext_resource type="Texture2D" uid="uid://dsl30g5gd2mb" path="res://sprite/ui/button-32x32/pressed.png" id="3_w7j33"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n6htr"]
+content_margin_bottom = 11.0
+texture = ExtResource("2_542h8")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n1xu3"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eu8aw"]
+content_margin_bottom = 11.0
+texture = ExtResource("1_la543")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q8cat"]
+content_margin_bottom = 11.0
+texture = ExtResource("2_542h8")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h5fhf"]
+content_margin_bottom = 6.0
+texture = ExtResource("3_w7j33")
+
+[resource]
+Button/font_sizes/font_size = 25
+Button/styles/disabled = SubResource("StyleBoxTexture_n6htr")
+Button/styles/focus = SubResource("StyleBoxEmpty_n1xu3")
+Button/styles/hover = SubResource("StyleBoxTexture_eu8aw")
+Button/styles/normal = SubResource("StyleBoxTexture_q8cat")
+Button/styles/pressed = SubResource("StyleBoxTexture_h5fhf")

@@ -11,10 +11,10 @@ streams_count = 1
 stream_0/stream = ExtResource("3_kldsu")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_etfxw"]
-size = Vector2(370, 1250)
+size = Vector2(370, 1737.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k2dl1"]
-size = Vector2(470, 170)
+size = Vector2(471.666, 237.5)
 
 [node name="Pillar" type="Area2D"]
 position = Vector2(0, 1)
@@ -30,13 +30,13 @@ rotation = -1.5708
 shape = SubResource("WorldBoundaryShape2D_vkmr6")
 
 [node name="Top" type="Sprite2D" parent="."]
-position = Vector2(-6, -364)
-scale = Vector2(0.3, 0.4)
+position = Vector2(-6, -468.5)
+scale = Vector2(0.3, 0.555333)
 texture = ExtResource("1_o4pqh")
 
 [node name="Bottom" type="Sprite2D" parent="."]
-position = Vector2(-6, 364)
-scale = Vector2(0.3, 0.4)
+position = Vector2(-6, 468.5)
+scale = Vector2(0.3, 0.555333)
 texture = ExtResource("1_o4pqh")
 flip_v = true
 
@@ -50,22 +50,22 @@ input_pickable = false
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Kill"]
-position = Vector2(-1.50001, -410)
+position = Vector2(-1.50001, -532)
 scale = Vector2(0.3, 0.4)
 shape = SubResource("RectangleShape2D_etfxw")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Kill"]
-position = Vector2(-2, 410)
+position = Vector2(-2, 532.5)
 scale = Vector2(0.3, 0.4)
 shape = SubResource("RectangleShape2D_etfxw")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Kill"]
-position = Vector2(-1.5, -130)
+position = Vector2(-1.5, -144)
 scale = Vector2(0.3, 0.4)
 shape = SubResource("RectangleShape2D_k2dl1")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Kill"]
-position = Vector2(-2, 130)
+position = Vector2(-1.75004, 143.5)
 rotation = 3.14159
 scale = Vector2(0.3, 0.4)
 shape = SubResource("RectangleShape2D_k2dl1")

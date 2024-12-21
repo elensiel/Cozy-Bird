@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://ct8y3u6mrqjr"]
+[gd_scene load_steps=34 format=3 uid="uid://ct8y3u6mrqjr"]
 
 [ext_resource type="Texture2D" uid="uid://cfi8a7pvb4fh8" path="res://sprite/background/bldgs_back.png" id="1_0h1g6"]
 [ext_resource type="Script" path="res://script_sharp/GameStateMachine.cs" id="1_sbg2d"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://script_sharp/ParallaxBackground.cs" id="2_haunf"]
 [ext_resource type="Texture2D" uid="uid://6trdrvel2aaa" path="res://sprite/background/bldgs_mid.png" id="3_wt5tx"]
 [ext_resource type="Texture2D" uid="uid://xv1wp42xhy2f" path="res://sprite/background/clouds_mid.png" id="4_htqwx"]
+[ext_resource type="Script" path="res://script_sharp/ParallaxSprite.cs" id="4_it6w3"]
 [ext_resource type="Texture2D" uid="uid://bddqls33gfcub" path="res://sprite/background/bldgs_front.png" id="5_xbq0l"]
 [ext_resource type="Texture2D" uid="uid://b8b42sfhd3myw" path="res://sprite/background/main.png" id="6_d8w1d"]
 [ext_resource type="Texture2D" uid="uid://cplbjugav7vhx" path="res://sprite/background/clouds_front.png" id="7_ff34c"]
@@ -26,6 +27,7 @@
 [ext_resource type="Script" path="res://script_sharp/PauseButton.cs" id="22_qw1lu"]
 [ext_resource type="Script" path="res://script_sharp/GameManager.cs" id="23_n7080"]
 [ext_resource type="AudioStream" uid="uid://3xra2sxxu5o" path="res://audio/sfx/button_press.wav" id="23_x0tlq"]
+[ext_resource type="Theme" uid="uid://cuyg6uc2ef55y" path="res://resource/button-32x32.tres" id="24_uvh1k"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_xctjq"]
 
@@ -68,17 +70,20 @@ motion_mirroring = Vector2(1745, 2.08189e-12)
 scale = Vector2(0.660985, 0.5625)
 texture = ExtResource("1_0h1g6")
 centered = false
+script = ExtResource("4_it6w3")
 
 [node name="Clouds" type="Sprite2D" parent="ParallaxBackground/Back"]
 scale = Vector2(0.660985, 0.5625)
 texture = ExtResource("2_4itqu")
 centered = false
+script = ExtResource("4_it6w3")
 
 [node name="Main" type="Sprite2D" parent="ParallaxBackground/Back"]
 z_index = -51
 scale = Vector2(0.660985, 0.5625)
 texture = ExtResource("6_d8w1d")
 centered = false
+script = ExtResource("4_it6w3")
 
 [node name="Middle" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.4, 1)
@@ -88,11 +93,13 @@ motion_mirroring = Vector2(1745, 2.08189e-12)
 scale = Vector2(0.660985, 0.5625)
 texture = ExtResource("3_wt5tx")
 centered = false
+script = ExtResource("4_it6w3")
 
 [node name="Clouds" type="Sprite2D" parent="ParallaxBackground/Middle"]
 scale = Vector2(0.660985, 0.5625)
 texture = ExtResource("4_htqwx")
 centered = false
+script = ExtResource("4_it6w3")
 
 [node name="Front" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.7, 1)
@@ -102,11 +109,13 @@ motion_mirroring = Vector2(1745, 2.08189e-12)
 scale = Vector2(0.660985, 0.5625)
 texture = ExtResource("5_xbq0l")
 centered = false
+script = ExtResource("4_it6w3")
 
 [node name="Clouds" type="Sprite2D" parent="ParallaxBackground/Front"]
 scale = Vector2(0.660985, 0.5625)
 texture = ExtResource("7_ff34c")
 centered = false
+script = ExtResource("4_it6w3")
 
 [node name="PillarSpawnMachine" type="Node" parent="."]
 process_mode = 1
@@ -171,6 +180,7 @@ offset_left = 15.0
 offset_top = 15.0
 offset_right = 65.0
 offset_bottom = 65.0
+theme = ExtResource("24_uvh1k")
 action_mode = 0
 text = "||"
 script = ExtResource("22_qw1lu")

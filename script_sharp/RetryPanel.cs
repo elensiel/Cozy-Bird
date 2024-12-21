@@ -1,34 +1,43 @@
 using Godot;
 
-public partial class RetryPanel : Node
+public partial class RetryPanel : IngamePanel
 {
     private AudioStreamPlayer2D Audio;
-    private Button ButtonRetry;
-    private Button ButtonBack;
-    private GameManager _gameManager;
     private GameStateMachine _gameStateMachine;
-    private Label Label;
-    private Label Label2;
 
     public override void _Ready()
     {
         GetTree().Paused = true;
+        base._Ready();
 
         Audio = GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
-        ButtonRetry = GetNode<Button>("PanelContainer/MarginContainer/VBoxContainer/Retry");
-        ButtonBack = GetNode<Button>("PanelContainer/MarginContainer/VBoxContainer/Back");
-        _gameManager = GetParent<GameManager>();
         _gameStateMachine = GetParent().GetParent<GameStateMachine>();
-        Label = GetNode<Label>("Label");
-        Label2 = GetNode<Label>("Label2");
 
-        Label.Text = _gameManager.Score.ToString();
-        Label2.Visible = _gameManager.Score > _gameManager.HighScore;
+        // connecting buttons
+        GetNode<Button>("PanelContainer/MarginContainer/VBoxContainer/Retry").Connect(Button.SignalName.Pressed, Callable.From(OnButtonPressedRetry));
+        GetNode<Button>("PanelContainer/MarginContainer/VBoxContainer/Back").Connect(Button.SignalName.Pressed, Callable.From(OnButtonPressedBack));
 
-        _gameManager.SaveHighScore();
+        // UI adjustments
+        Vector2 viewportSize = GetViewport().GetVisibleRect().Size;
+        Label label = GetNode<Label>("Label");
+        Label Label2 = GetNode<Label>("Label2");
 
-        ButtonRetry.Connect(Button.SignalName.Pressed, Callable.From(OnButtonPressedRetry));
-        ButtonBack.Connect(Button.SignalName.Pressed, Callable.From(OnButtonPressedBack));
+        Label2.Size = Label2.Size with { X = viewportSize.X };
+        Label2.Position = Label2.Position with { Y = GetNode<PanelContainer>("PanelContainer").Position.Y - Label2.Size.Y };
+
+        label.Text = GameManager.Score.ToString();
+        label.Size = label.Size with { X = viewportSize.X };
+        label.Position = new Vector2(0, Label2.Position.Y - label.Size.Y);
+
+        if (GameManager.Score > GameManager.HighScore)
+        {
+            GameManager.HighScore = GameManager.Score;
+            Label2.Visible = true;
+        }
+        else
+        {
+            Label2.Visible = false;
+        }
     }
 
     private async void OnButtonPressedRetry()

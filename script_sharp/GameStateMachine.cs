@@ -6,6 +6,7 @@ public partial class GameStateMachine : Node
     private GameManager _gameManager;
     private ParallaxBackground _parallaxBackground;
     private PackedScene _pausePanel;
+    private Node _pausePanelTemp;
     private Player _player;
     private Timer _pillarSpawnTimer;
 
@@ -17,7 +18,6 @@ public partial class GameStateMachine : Node
     }
 
     public GameState CurrentState;
-    private Node _pausePanelTemp;
     private bool _start = false;
     private bool _jumped = false;
 
@@ -61,11 +61,13 @@ public partial class GameStateMachine : Node
                 }
                 break;
             case GameState.RUNNING:
+                _player.SetProcessUnhandledInput(true);
                 _player.SetPhysicsProcess(true);
                 _parallaxBackground.SetProcess(true);
                 _pillarSpawnTimer.SetPaused(false);
                 break;
             case GameState.DEAD:
+                GetNode<Button>("PauseButton").Disabled = true;
                 _player.SetProcessInput(false);
                 if (!_jumped)
                 {
@@ -73,6 +75,7 @@ public partial class GameStateMachine : Node
                     _player.Jump();
                 }
 
+                _gameManager.SaveHighScore();
                 _deathTimer.Start();
                 break;
         }
@@ -91,7 +94,7 @@ public partial class GameStateMachine : Node
                 }
                 break;
             case GameState.RUNNING:
-                _player.SetProcessInput(false);
+                _player.SetProcessUnhandledInput(false);
                 _parallaxBackground.SetProcess(false);
                 _pillarSpawnTimer.SetPaused(true);
                 break;

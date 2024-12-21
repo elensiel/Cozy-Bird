@@ -1,10 +1,18 @@
-[gd_resource type="Theme" load_steps=11 format=3 uid="uid://bcihif0mi53lh"]
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://bcihif0mi53lh"]
 
 [ext_resource type="Texture2D" uid="uid://bnv1yvq287s2s" path="res://sprite/ui/button_hover.png" id="1_2m0y5"]
 [ext_resource type="FontFile" uid="uid://24iqdw1o4l60" path="res://resource/m5x7.ttf" id="1_dlwj0"]
 [ext_resource type="Texture2D" uid="uid://bh32ilr54h11o" path="res://sprite/ui/button.png" id="1_snxaa"]
 [ext_resource type="Texture2D" uid="uid://d363bl52106iv" path="res://sprite/ui/panel.png" id="1_tskqo"]
 [ext_resource type="Texture2D" uid="uid://dreh0u83j2dnw" path="res://sprite/ui/button_pressed.png" id="3_bwfm2"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_calnc"]
+content_margin_bottom = 11.0
+texture = ExtResource("1_snxaa")
+expand_margin_left = 35.0
+expand_margin_top = 39.0
+expand_margin_right = 32.0
+expand_margin_bottom = 56.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7y61x"]
 
@@ -42,6 +50,7 @@ expand_margin_bottom = 48.0
 [resource]
 Button/font_sizes/font_size = 25
 Button/fonts/font = ExtResource("1_dlwj0")
+Button/styles/disabled = SubResource("StyleBoxTexture_calnc")
 Button/styles/focus = SubResource("StyleBoxEmpty_7y61x")
 Button/styles/hover = SubResource("StyleBoxTexture_2shpo")
 Button/styles/normal = SubResource("StyleBoxTexture_to5oh")

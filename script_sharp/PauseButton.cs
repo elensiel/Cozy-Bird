@@ -8,7 +8,11 @@ public partial class PauseButton : Button
 	{
 		_audio = GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
 
-		_ = Connect(SignalName.Pressed, Callable.From(OnPressed));
+		Connect(SignalName.Pressed, Callable.From(OnPressed));
+
+		Vector2 viewportSize = GetViewport().GetVisibleRect().Size;
+		Size = new Vector2(viewportSize.X / 8, viewportSize.Y / 16);
+		Position = new Vector2(15, 15);
 	}
 
 	private void OnPressed()

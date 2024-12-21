@@ -23,7 +23,7 @@ buses/default_bus_layout="res://resource/default_bus_layout.tres"
 [display]
 
 window/size/viewport_width=480
-window/size/viewport_height=720
+window/size/viewport_height=1080
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 window/handheld/orientation=1

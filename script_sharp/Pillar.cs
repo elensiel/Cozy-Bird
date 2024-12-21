@@ -5,17 +5,20 @@ public partial class Pillar : Area2D
     private GameStateMachine _main;
     private GameManager _gameManager;
     private AudioStreamPlayer2D _audio;
-    private Area2D _killArea;
+
+    private bool _scored = false;
 
     public override void _Ready()
     {
         _main = GetParent().GetParent<GameStateMachine>();
         _gameManager = GetParent().GetParent<GameStateMachine>().GetNode<GameManager>("GameManager");
         _audio = GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
-        _killArea = GetNode<Area2D>("Kill");
 
-        _killArea.Connect(Area2D.SignalName.BodyEntered, Callable.From((CharacterBody2D body) => OnKillBodyEntered(body)));
+        GetNode<Area2D>("Kill").Connect(Area2D.SignalName.BodyEntered, Callable.From((CharacterBody2D body) => OnKillBodyEntered(body)));
         Connect(Area2D.SignalName.BodyEntered, Callable.From((CharacterBody2D body) => OnBodyEntered(body)));
+
+        Vector2 viewport_size = GetViewport().GetVisibleRect().Size;
+        Scale = new Vector2(viewport_size.X / 480, viewport_size.Y / 1080);
     }
 
     public override void _PhysicsProcess(double delta)
@@ -35,8 +38,9 @@ public partial class Pillar : Area2D
 
     private void OnBodyEntered(CharacterBody2D _body)
     {
-        if (_main.CurrentState == GameStateMachine.GameState.RUNNING)
+        if (_main.CurrentState == GameStateMachine.GameState.RUNNING && !_scored)
         {
+            _scored = true;
             _gameManager.IncScore();
             _audio.Play();
         }
