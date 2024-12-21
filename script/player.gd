@@ -18,7 +18,7 @@ var rotation_speed: float = 0.04
 
 ## FUNCTIONS
 ## processes
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		if main.current_state == GameStateMachine.GameState.PAUSED:
 			main.set_state(GameStateMachine.GameState.RUNNING)

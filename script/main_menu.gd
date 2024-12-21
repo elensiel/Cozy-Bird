@@ -4,21 +4,25 @@ extends Node
 @onready var game_loop: PackedScene = preload("res://scene/game_loop.tscn")
 
 func _ready() -> void:
-	$Label.text = "HIGH SCORE: " + str(_load_score()) # display high score
-
-## load high score
-func _load_score() -> int:
-	var DIR: String = OS.get_user_data_dir() + "/save/"
+	var viewport_size := get_viewport().get_visible_rect().size
+	var panel_container := $PanelContainer
+	var label := $Label
+	var sprite := $Sprite2D
 	
-	if not DirAccess.dir_exists_absolute(DIR):
-		# creates directory
-		DirAccess.make_dir_absolute(DIR)
-		
-		# creates save file and store 0 to prevent null error
-		FileAccess.open(DIR + "score.bin", FileAccess.WRITE).store_16(0)
-		return 0
+	panel_container.position.x = (viewport_size.x / 2) - (panel_container.size.x / 2)
+	panel_container.position.y = (viewport_size.y / 2) - (panel_container.size.y / 2)
 	
-	return FileAccess.open(DIR + "score.bin", FileAccess.READ).get_16()
+	label.text = "HIGH SCORE: " + str(GameManager.load_score()) # display high score
+	label.position.x = (viewport_size.x / 2) - (label.size.x / 2)
+	label.position.y = panel_container.position.y - label.size.y
+	
+	panel_container = null
+	label = null
+	
+	sprite.scale.x = (viewport_size.x * 2) / sprite.texture.get_width()
+	sprite.scale.y = viewport_size.y / sprite.texture.get_height()
+	sprite.position.x = viewport_size.x
+	sprite.position.y = viewport_size.y / 2
 
 func _on_play_pressed() -> void:
 	audio.play()

@@ -1,8 +1,9 @@
-[gd_scene load_steps=33 format=3 uid="uid://ct8y3u6mrqjr"]
+[gd_scene load_steps=34 format=3 uid="uid://ct8y3u6mrqjr"]
 
 [ext_resource type="Texture2D" uid="uid://dogo7cx0jyft0" path="res://sprite/background/bldgs_back.png" id="1_0h1g6"]
 [ext_resource type="Script" path="res://script/game_state_machine.gd" id="1_cv2ha"]
 [ext_resource type="Texture2D" uid="uid://bowphvfenvvth" path="res://sprite/background/clouds_back.png" id="2_4itqu"]
+[ext_resource type="Script" path="res://script/parallax_sprite_scale.gd" id="3_772me"]
 [ext_resource type="Texture2D" uid="uid://dgwamwl8vy2sy" path="res://sprite/background/bldgs_mid.png" id="3_wt5tx"]
 [ext_resource type="Texture2D" uid="uid://cusc844avgbjj" path="res://sprite/background/clouds_mid.png" id="4_htqwx"]
 [ext_resource type="Texture2D" uid="uid://d1psxj6s8wui3" path="res://sprite/background/bldgs_front.png" id="5_xbq0l"]
@@ -42,7 +43,7 @@ func _process(delta: float) -> void:
 resource_name = "walls"
 script/source = "extends Area2D
 
-func _on_body_entered(body: Node2D) -> void:
+func _on_body_entered(_body: Node2D) -> void:
 	if owner.current_state == GameStateMachine.GameState.RUNNING:
 		owner.set_state(GameStateMachine.GameState.DEAD)
 "
@@ -97,17 +98,20 @@ motion_mirroring = Vector2(1745, 2.08189e-12)
 scale = Vector2(0.660985, 0.5625)
 texture = ExtResource("1_0h1g6")
 centered = false
+script = ExtResource("3_772me")
 
 [node name="Clouds" type="Sprite2D" parent="ParallaxBackground/Back"]
 scale = Vector2(0.660985, 0.5625)
 texture = ExtResource("2_4itqu")
 centered = false
+script = ExtResource("3_772me")
 
 [node name="Main" type="Sprite2D" parent="ParallaxBackground/Back"]
 z_index = -51
 scale = Vector2(0.660985, 0.5625)
 texture = ExtResource("6_d8w1d")
 centered = false
+script = ExtResource("3_772me")
 
 [node name="Middle" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.4, 1)
@@ -117,11 +121,13 @@ motion_mirroring = Vector2(1745, 2.08189e-12)
 scale = Vector2(0.660985, 0.5625)
 texture = ExtResource("3_wt5tx")
 centered = false
+script = ExtResource("3_772me")
 
 [node name="Clouds" type="Sprite2D" parent="ParallaxBackground/Middle"]
 scale = Vector2(0.660985, 0.5625)
 texture = ExtResource("4_htqwx")
 centered = false
+script = ExtResource("3_772me")
 
 [node name="Front" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.7, 1)
@@ -131,11 +137,13 @@ motion_mirroring = Vector2(1745, 2.08189e-12)
 scale = Vector2(0.660985, 0.5625)
 texture = ExtResource("5_xbq0l")
 centered = false
+script = ExtResource("3_772me")
 
 [node name="Clouds" type="Sprite2D" parent="ParallaxBackground/Front"]
 scale = Vector2(0.660985, 0.5625)
 texture = ExtResource("7_ff34c")
 centered = false
+script = ExtResource("3_772me")
 
 [node name="PillarSpawnMachine" type="Node" parent="."]
 process_mode = 1

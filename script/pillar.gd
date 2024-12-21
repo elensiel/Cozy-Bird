@@ -9,11 +9,11 @@ func _physics_process(delta: float) -> void:
 		position.x -= 125 * delta
 
 ## KILL
-func _on_kill_body_entered(body: Node2D) -> void:
+func _on_kill_body_entered(_body: Node2D) -> void:
 	main.set_state(GameStateMachine.GameState.DEAD)
 
 ## SCORE
-func _on_body_entered(body: Node2D) -> void:
+func _on_body_entered(_body: Node2D) -> void:
 	if main.current_state == GameStateMachine.GameState.RUNNING:
 		gm.inc_score()
 		audio.play()

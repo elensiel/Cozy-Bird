@@ -1,13 +1,20 @@
 [gd_scene load_steps=4 format=3 uid="uid://pnq6fwn7udn6"]
 
 [ext_resource type="Theme" uid="uid://bcihif0mi53lh" path="res://resource/menu.tres" id="1_vhddf"]
-[ext_resource type="AudioStream" uid="uid://3xra2sxxu5o" path="res://audio/sfx/button_press.wav" id="2_o7bgd"]
+[ext_resource type="AudioStream" uid="uid://8six3penfsmq" path="res://audio/sfx/button_press.wav" id="2_o7bgd"]
 
 [sub_resource type="GDScript" id="GDScript_u4dh4"]
 resource_name = "PausePanel"
-script/source = "extends Node
+script/source = "extends IngamePanel
 
 @onready var audio: AudioStreamPlayer2D = $AudioStreamPlayer2D
+
+func _ready() -> void:
+	super._ready()
+	
+	var label := $Label
+	label.size.x = get_viewport().get_visible_rect().size.x
+	label.position = Vector2(0, $PanelContainer.position.y - label.size.y)
 
 func _on_continue_pressed() -> void:
 	audio.play()
@@ -53,9 +60,8 @@ layout_mode = 2
 text = "BACK TO MENU"
 
 [node name="Label" type="Label" parent="."]
-offset_left = 127.0
 offset_top = 162.0
-offset_right = 354.0
+offset_right = 480.0
 offset_bottom = 248.0
 theme = ExtResource("1_vhddf")
 theme_override_font_sizes/font_size = 50

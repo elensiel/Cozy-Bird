@@ -9,9 +9,6 @@
 script = ExtResource("1_76leo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = -99
-position = Vector2(480, 360)
-scale = Vector2(0.363636, 0.5625)
 texture = ExtResource("1_3n8pn")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]

@@ -39,10 +39,10 @@ func _exit_state(state: GameState):
 			player.set_physics_process(true) # run player physics
 			
 			# qfree pause panel
-			if get_node("PausePanel") != null:
+			if get_node_or_null("PausePanel") != null:
 				get_node("PausePanel").queue_free()
 		GameState.RUNNING:
-			player.set_process_input(false) # disable _input
+			player.set_process_unhandled_input(false)
 			parallax.set_process(false) # pause parallax scrolling
 			timer.set_paused(true) # pause timer
 		GameState.DEAD:
@@ -59,11 +59,11 @@ func _enter_state(state: GameState):
 				pause_panel_temp = pause_panel.instantiate()
 				add_child(pause_panel_temp)
 		GameState.RUNNING:
-			player.set_process_input(true) # enable _input
+			player.set_process_unhandled_input(true)
 			parallax.set_process(true) # run parallax scrolling
 			timer.set_paused(false) # run timer
 		GameState.DEAD:
-			player.set_process_input(false) # pause player input
+			$PauseButton.disabled = true
 			if not jumped:
 				jumped = true
 				player.jump()
