@@ -12,10 +12,8 @@ public partial class MainMenu : Node
         Audio = GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
 
         // connecting buttons
-        Button ButtonPlay = GetNode<Button>("PanelContainer/MarginContainer/VBoxContainer/Play");
-        Button ButtonQuit = GetNode<Button>("PanelContainer/MarginContainer/VBoxContainer/Quit");
-        ButtonPlay.Connect(Button.SignalName.Pressed, Callable.From(OnButtonPressedPlay));
-        ButtonQuit.Connect(Button.SignalName.Pressed, Callable.From(OnButtonPressedQuit));
+        GetNode<Button>("PanelContainer/MarginContainer/VBoxContainer/Play").Connect(Button.SignalName.Pressed, Callable.From(OnButtonPressedPlay));
+        GetNode<Button>("PanelContainer/MarginContainer/VBoxContainer/Quit").Connect(Button.SignalName.Pressed, Callable.From(OnButtonPressedQuit));
 
         // UI adjustments
         Vector2 viewportSize = GetViewport().GetVisibleRect().Size;
@@ -23,8 +21,7 @@ public partial class MainMenu : Node
         Label label = GetNode<Label>("Label");
         Sprite2D sprite = GetNode<Sprite2D>("Sprite2D");
 
-        panelContainer.Position = panelContainer.Position with { X = (viewportSize.X / 2) - (panelContainer.Size.X / 2) };
-        panelContainer.Position = panelContainer.Position with { Y = (viewportSize.Y / 2) - (panelContainer.Size.Y / 2) };
+        panelContainer.Position = (viewportSize / 2) - (panelContainer.Size / 2);
 
         label.Text = "HIGH SCORE: " + GameManager.LoadScore().ToString();
         label.Position = label.Position with { X = (viewportSize.X / 2) - (label.Size.X / 2) };
