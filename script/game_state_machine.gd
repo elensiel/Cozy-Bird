@@ -4,7 +4,6 @@ class_name GameStateMachine
 
 ## REFERENCES
 @onready var death_timer: Timer = $DeathTimer
-@onready var game_manager: GameManager = $GameManager
 @onready var parallax: ParallaxBackground = $ParallaxBackground
 @onready var pause_panel: PackedScene = preload("res://scene/pause_panel.tscn")
 @onready var player: CharacterBody2D = $Player as Player
@@ -68,5 +67,5 @@ func _enter_state(state: GameState):
 				jumped = true
 				player.jump()
 			
-			game_manager.save_high_score() 
+			GameManager.save_high_score()
 			death_timer.start()

@@ -7,6 +7,9 @@ class_name GameManager
 static var score: int = 0
 static var high_score: int = load_score()
 
+func _ready() -> void:
+	score = 0
+
 func inc_score() -> void:
 	score += 1
 	label.text = str(score)
@@ -31,9 +34,8 @@ static func load_score() -> int:
 		return 0
 	return file.get_16()
 
-func save_high_score() -> void:
+static func save_high_score() -> void:
 	if high_score < score:
-		high_score = score
 		var file := _open_file(FileAccess.ModeFlags.WRITE)
 		if file:
 			file.store_16(high_score)
