@@ -1,32 +1,32 @@
 [gd_scene load_steps=34 format=3 uid="uid://ct8y3u6mrqjr"]
 
-[ext_resource type="Texture2D" uid="uid://cfi8a7pvb4fh8" path="res://sprite/background/bldgs_back.png" id="1_0h1g6"]
-[ext_resource type="Script" path="res://script_sharp/GameStateMachine.cs" id="1_sbg2d"]
-[ext_resource type="Texture2D" uid="uid://dm8oxb2m64jf1" path="res://sprite/background/clouds_back.png" id="2_4itqu"]
-[ext_resource type="Script" path="res://script_sharp/ParallaxBackground.cs" id="2_haunf"]
-[ext_resource type="Texture2D" uid="uid://6trdrvel2aaa" path="res://sprite/background/bldgs_mid.png" id="3_wt5tx"]
-[ext_resource type="Texture2D" uid="uid://xv1wp42xhy2f" path="res://sprite/background/clouds_mid.png" id="4_htqwx"]
-[ext_resource type="Script" path="res://script_sharp/ParallaxSprite.cs" id="4_it6w3"]
-[ext_resource type="Texture2D" uid="uid://bddqls33gfcub" path="res://sprite/background/bldgs_front.png" id="5_xbq0l"]
-[ext_resource type="Texture2D" uid="uid://b8b42sfhd3myw" path="res://sprite/background/main.png" id="6_d8w1d"]
-[ext_resource type="Texture2D" uid="uid://cplbjugav7vhx" path="res://sprite/background/clouds_front.png" id="7_ff34c"]
-[ext_resource type="Script" path="res://script_sharp/PillarSpawnMachine.cs" id="10_vxjpa"]
-[ext_resource type="Texture2D" uid="uid://c8pebhhjl0m0j" path="res://sprite/crow 64x64.png" id="10_wwn0w"]
-[ext_resource type="AudioStream" uid="uid://csnxfmchgeybm" path="res://audio/sfx/flaps/flap_1.wav" id="11_qn4a8"]
-[ext_resource type="Script" path="res://script_sharp/Player.cs" id="11_vv8pp"]
-[ext_resource type="Script" path="res://script_sharp/Walls.cs" id="11_wc02w"]
-[ext_resource type="AudioStream" uid="uid://bym75hppj0l40" path="res://audio/sfx/flaps/flap_2.wav" id="12_avuh0"]
+[ext_resource type="Texture2D" uid="uid://ckrpyhck3k3xd" path="res://sprite/background/bldgs_back.png" id="1_0h1g6"]
+[ext_resource type="Script" uid="uid://d2gf4scj8dkpk" path="res://script_sharp/GameStateMachine.cs" id="1_sbg2d"]
+[ext_resource type="Texture2D" uid="uid://borc2v0l8aycr" path="res://sprite/background/clouds_back.png" id="2_4itqu"]
+[ext_resource type="Script" uid="uid://b1o4grvdo21he" path="res://script_sharp/ParallaxBackground.cs" id="2_haunf"]
+[ext_resource type="Texture2D" uid="uid://bdtlkaysykh5k" path="res://sprite/background/bldgs_mid.png" id="3_wt5tx"]
+[ext_resource type="Texture2D" uid="uid://dnanbwxwm02dd" path="res://sprite/background/clouds_mid.png" id="4_htqwx"]
+[ext_resource type="Script" uid="uid://1xj5byio6xos" path="res://script_sharp/ParallaxSprite.cs" id="4_it6w3"]
+[ext_resource type="Texture2D" uid="uid://deodqi8qxn6i7" path="res://sprite/background/bldgs_front.png" id="5_xbq0l"]
+[ext_resource type="Texture2D" uid="uid://ep0moppr3sfw" path="res://sprite/background/main.png" id="6_d8w1d"]
+[ext_resource type="Texture2D" uid="uid://bshg3t14lb5jk" path="res://sprite/background/clouds_front.png" id="7_ff34c"]
+[ext_resource type="Script" uid="uid://b8r5wniv61j7t" path="res://script_sharp/PillarSpawnMachine.cs" id="10_vxjpa"]
+[ext_resource type="Texture2D" uid="uid://cuceg401cm6dd" path="res://sprite/crow 64x64.png" id="10_wwn0w"]
+[ext_resource type="AudioStream" uid="uid://bom7negkc0lix" path="res://audio/sfx/flaps/flap_1.wav" id="11_qn4a8"]
+[ext_resource type="Script" uid="uid://b7al46r71wcep" path="res://script_sharp/Player.cs" id="11_vv8pp"]
+[ext_resource type="Script" uid="uid://cb1fwq4lidlxg" path="res://script_sharp/Walls.cs" id="11_wc02w"]
+[ext_resource type="AudioStream" uid="uid://btr02bovvhcuy" path="res://audio/sfx/flaps/flap_2.wav" id="12_avuh0"]
 [ext_resource type="Theme" uid="uid://bcihif0mi53lh" path="res://resource/menu.tres" id="12_vjlor"]
-[ext_resource type="AudioStream" uid="uid://iibsdurnoxyw" path="res://audio/sfx/flaps/flap_3.wav" id="13_wrvs0"]
-[ext_resource type="AudioStream" uid="uid://bydi118jjsq28" path="res://audio/sfx/flaps/flap_4.wav" id="14_3k6q4"]
-[ext_resource type="AudioStream" uid="uid://cjayu2decyges" path="res://audio/sfx/caws/caw_1.wav" id="15_yeqfo"]
-[ext_resource type="AudioStream" uid="uid://fiuxbp2as8e3" path="res://audio/sfx/caws/caw_2.wav" id="16_qkm3p"]
-[ext_resource type="AudioStream" uid="uid://c3hk3qt0ahfuq" path="res://audio/sfx/caws/caw_3.wav" id="17_6esw4"]
-[ext_resource type="AudioStream" uid="uid://crt8cfrutvpro" path="res://audio/sfx/caws/caw_4.wav" id="18_lg101"]
-[ext_resource type="AudioStream" uid="uid://di86ufhgfyljx" path="res://audio/sfx/caws/caw_5.wav" id="19_0t2d8"]
-[ext_resource type="Script" path="res://script_sharp/PauseButton.cs" id="22_qw1lu"]
-[ext_resource type="Script" path="res://script_sharp/GameManager.cs" id="23_n7080"]
-[ext_resource type="AudioStream" uid="uid://3xra2sxxu5o" path="res://audio/sfx/button_press.wav" id="23_x0tlq"]
+[ext_resource type="AudioStream" uid="uid://b70v28pl8e7" path="res://audio/sfx/flaps/flap_3.wav" id="13_wrvs0"]
+[ext_resource type="AudioStream" uid="uid://dkvvbqb4f2po7" path="res://audio/sfx/flaps/flap_4.wav" id="14_3k6q4"]
+[ext_resource type="AudioStream" uid="uid://bj04hafjisthb" path="res://audio/sfx/caws/caw_1.wav" id="15_yeqfo"]
+[ext_resource type="AudioStream" uid="uid://b2yl2cgcaxaa8" path="res://audio/sfx/caws/caw_2.wav" id="16_qkm3p"]
+[ext_resource type="AudioStream" uid="uid://dixjpqmwpma7c" path="res://audio/sfx/caws/caw_3.wav" id="17_6esw4"]
+[ext_resource type="AudioStream" uid="uid://c0vweqnd51ge2" path="res://audio/sfx/caws/caw_4.wav" id="18_lg101"]
+[ext_resource type="AudioStream" uid="uid://bnqgrjuxi0ahh" path="res://audio/sfx/caws/caw_5.wav" id="19_0t2d8"]
+[ext_resource type="Script" uid="uid://5r5bbjgukybh" path="res://script_sharp/PauseButton.cs" id="22_qw1lu"]
+[ext_resource type="Script" uid="uid://da3nyfxqd0su5" path="res://script_sharp/GameManager.cs" id="23_n7080"]
+[ext_resource type="AudioStream" uid="uid://mvoxylrfnb53" path="res://audio/sfx/button_press.wav" id="23_x0tlq"]
 [ext_resource type="Theme" uid="uid://cuyg6uc2ef55y" path="res://resource/button-32x32.tres" id="24_uvh1k"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_xctjq"]
@@ -64,7 +64,6 @@ script = ExtResource("2_haunf")
 
 [node name="Back" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.2, 1)
-motion_mirroring = Vector2(1745, 2.08189e-12)
 
 [node name="Buildings" type="Sprite2D" parent="ParallaxBackground/Back"]
 scale = Vector2(0.660985, 0.5625)
@@ -87,7 +86,6 @@ script = ExtResource("4_it6w3")
 
 [node name="Middle" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.4, 1)
-motion_mirroring = Vector2(1745, 2.08189e-12)
 
 [node name="Buildings" type="Sprite2D" parent="ParallaxBackground/Middle"]
 scale = Vector2(0.660985, 0.5625)
@@ -103,7 +101,6 @@ script = ExtResource("4_it6w3")
 
 [node name="Front" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.7, 1)
-motion_mirroring = Vector2(1745, 2.08189e-12)
 
 [node name="Buildings" type="Sprite2D" parent="ParallaxBackground/Front"]
 scale = Vector2(0.660985, 0.5625)

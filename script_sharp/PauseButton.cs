@@ -8,7 +8,8 @@ public partial class PauseButton : Button
 	{
 		_audio = GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
 
-		Connect(SignalName.Pressed, Callable.From(OnPressed));
+		Connect(BaseButton.SignalName.Pressed, Callable.From(OnPressed));
+		Connect(Node.SignalName.TreeExiting, Callable.From(OnTreeExiting));
 
 		Vector2 viewportSize = GetViewport().GetVisibleRect().Size;
 		Size = new Vector2(viewportSize.X / 8, viewportSize.Y / 16);
@@ -19,5 +20,11 @@ public partial class PauseButton : Button
 	{
 		_audio.Play();
 		GetOwner<GameStateMachine>().SetState(GameStateMachine.GameState.PAUSED);
+	}
+
+	private void OnTreeExiting()
+	{
+		Disconnect(BaseButton.SignalName.Pressed, Callable.From(OnPressed));
+		Disconnect(Node.SignalName.TreeExiting, Callable.From(OnTreeExiting));
 	}
 }

@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dqugdw0t852hf"]
 
 [ext_resource type="Theme" uid="uid://bcihif0mi53lh" path="res://resource/menu.tres" id="1_epxu4"]
-[ext_resource type="Script" path="res://script_sharp/RetryPanel.cs" id="1_fidox"]
-[ext_resource type="AudioStream" uid="uid://3xra2sxxu5o" path="res://audio/sfx/button_press.wav" id="2_hsjct"]
+[ext_resource type="Script" uid="uid://bhprp8rynonod" path="res://script_sharp/RetryPanel.cs" id="1_fidox"]
+[ext_resource type="AudioStream" uid="uid://mvoxylrfnb53" path="res://audio/sfx/button_press.wav" id="2_hsjct"]
 
 [node name="RetryPanel" type="Node"]
 process_mode = 2

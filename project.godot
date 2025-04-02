@@ -12,7 +12,8 @@ config_version=5
 
 config/name="Cozy Bird Rebuild"
 run/main_scene="res://scene/main_menu.tscn"
-config/features=PackedStringArray("4.3", "C#", "Forward Plus")
+config/features=PackedStringArray("4.4", "C#", "Forward Plus")
+run/max_fps=60
 config/icon="res://icon.png"
 config/windows_native_icon="res://icon256.ico"
 

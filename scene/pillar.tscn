@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://cug3hcoxv8hxn"]
 
-[ext_resource type="Script" path="res://script_sharp/Pillar.cs" id="1_3ugg4"]
-[ext_resource type="Texture2D" uid="uid://dyjqclwjqwtpj" path="res://sprite/pillar.png" id="1_o4pqh"]
-[ext_resource type="AudioStream" uid="uid://bprtrquhyuxlc" path="res://audio/sfx/score.wav" id="3_kldsu"]
+[ext_resource type="Script" uid="uid://bh5qs6lx3ldh3" path="res://script_sharp/Pillar.cs" id="1_3ugg4"]
+[ext_resource type="Texture2D" uid="uid://b3t6sahcgyqdg" path="res://sprite/pillar.png" id="1_o4pqh"]
+[ext_resource type="AudioStream" uid="uid://sqhddqovlo5w" path="res://audio/sfx/score.wav" id="3_kldsu"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vkmr6"]
 

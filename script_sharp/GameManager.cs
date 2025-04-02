@@ -13,9 +13,10 @@ public partial class GameManager : Node
     public override void _Ready()
     {
         _label = GetNode<Label>("Label");
-        _try = ResourceLoader.Load<PackedScene>("res://scene/retry_panel.tscn").Instantiate();
+        _try = ResourceLoader.Load<PackedScene>(StringValues.retryPanel).Instantiate();
 
         GetParent().GetNode<Timer>("DeathTimer").Connect(Timer.SignalName.Timeout, Callable.From(OnDeathTimerTimeout));
+        Connect(Node.SignalName.TreeExiting, Callable.From(OnTreeExiting));
 
         Score = 0; // reset  cuz its fxxking static u idiot
         HighScore = LoadScore();
@@ -31,9 +32,9 @@ public partial class GameManager : Node
     }
 
     // SAVING AND LOADING 
-    private static string EnsureDirectoryExists()
+    public static string EnsureDirectoryExists()
     {
-        string directory = OS.GetUserDataDir() + "/save/";
+        string directory = OS.GetUserDataDir() + "/resource/";
         if (!Directory.Exists(directory))
         {
             Directory.CreateDirectory(directory);
@@ -68,7 +69,7 @@ public partial class GameManager : Node
             try
             {
                 using var file = OpenFile(Godot.FileAccess.ModeFlags.Write);
-                file.Store16((ushort)HighScore);
+                file.Store16((ushort)Score);
             }
             catch (Exception e)
             {
@@ -82,5 +83,11 @@ public partial class GameManager : Node
         AddChild(_try);
 
         _label.Visible = false;
+    }
+
+    private void OnTreeExiting()
+    {
+        GetParent().GetNode<Timer>("DeathTimer").Disconnect(Timer.SignalName.Timeout, Callable.From(OnDeathTimerTimeout));
+        Disconnect(Node.SignalName.TreeExiting, Callable.From(OnTreeExiting));
     }
 }

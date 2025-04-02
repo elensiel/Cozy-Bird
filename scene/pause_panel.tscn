@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://pnq6fwn7udn6"]
 
-[ext_resource type="Script" path="res://script_sharp/PausePanel.cs" id="1_j0tx3"]
+[ext_resource type="Script" uid="uid://bsgtko7lhsebx" path="res://script_sharp/PausePanel.cs" id="1_j0tx3"]
 [ext_resource type="Theme" uid="uid://bcihif0mi53lh" path="res://resource/menu.tres" id="1_vhddf"]
-[ext_resource type="AudioStream" uid="uid://3xra2sxxu5o" path="res://audio/sfx/button_press.wav" id="2_o7bgd"]
+[ext_resource type="AudioStream" uid="uid://mvoxylrfnb53" path="res://audio/sfx/button_press.wav" id="2_o7bgd"]
 
 [node name="PausePanel" type="Node"]
 script = ExtResource("1_j0tx3")

@@ -4,6 +4,8 @@ public partial class RetryPanel : IngamePanel
 {
     private AudioStreamPlayer2D Audio;
     private GameStateMachine _gameStateMachine;
+    private Button _retry;
+    private Button _back;
 
     public override void _Ready()
     {
@@ -12,10 +14,13 @@ public partial class RetryPanel : IngamePanel
 
         Audio = GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
         _gameStateMachine = GetParent().GetParent<GameStateMachine>();
+        _retry = GetNode<Button>("PanelContainer/MarginContainer/VBoxContainer/Retry");
+        _back = GetNode<Button>("PanelContainer/MarginContainer/VBoxContainer/Back");
 
         // connecting buttons
-        GetNode<Button>("PanelContainer/MarginContainer/VBoxContainer/Retry").Connect(Button.SignalName.Pressed, Callable.From(OnButtonPressedRetry));
-        GetNode<Button>("PanelContainer/MarginContainer/VBoxContainer/Back").Connect(Button.SignalName.Pressed, Callable.From(OnButtonPressedBack));
+        _retry.Connect(BaseButton.SignalName.Pressed, Callable.From(OnButtonPressedRetry));
+        _back.Connect(BaseButton.SignalName.Pressed, Callable.From(OnButtonPressedBack));
+        Connect(Node.SignalName.TreeExiting, Callable.From(OnTreeExiting));
 
         // UI adjustments
         Vector2 viewportSize = GetViewport().GetVisibleRect().Size;
@@ -29,15 +34,12 @@ public partial class RetryPanel : IngamePanel
         label.Size = label.Size with { X = viewportSize.X };
         label.Position = new Vector2(0, Label2.Position.Y - label.Size.Y);
 
-        if (GameManager.Score > GameManager.HighScore)
+        bool newHighScore = GameManager.Score > GameManager.HighScore;
+        if (newHighScore)
         {
-            GameManager.HighScore = GameManager.Score;
-            Label2.Visible = true;
+            GameManager.Score = GameManager.HighScore;
         }
-        else
-        {
-            Label2.Visible = false;
-        }
+        Label2.Visible = newHighScore;
     }
 
     private async void OnButtonPressedRetry()
@@ -53,6 +55,13 @@ public partial class RetryPanel : IngamePanel
         Audio.Play();
         await ToSignal(Audio, "finished");
         GetTree().Paused = false;
-        GetTree().ChangeSceneToFile("res://scene/main_menu.tscn");
+        GetTree().ChangeSceneToFile(StringValues.mainMenu);
+    }
+
+    private void OnTreeExiting()
+    {
+        _retry.Disconnect(BaseButton.SignalName.Pressed, Callable.From(OnButtonPressedRetry));
+        _back.Disconnect(BaseButton.SignalName.Pressed, Callable.From(OnButtonPressedBack));
+        Disconnect(Node.SignalName.TreeExiting, Callable.From(OnTreeExiting));
     }
 }

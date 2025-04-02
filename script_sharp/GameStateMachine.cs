@@ -27,7 +27,7 @@ public partial class GameStateMachine : Node
         _deathTimer = GetNode<Timer>("DeathTimer");
         _gameManager = GetNode<GameManager>("GameManager");
         _parallaxBackground = GetNode<ParallaxBackground>("ParallaxBackground");
-        _pausePanel = ResourceLoader.Load<PackedScene>("res://scene/pause_panel.tscn");
+        _pausePanel = ResourceLoader.Load<PackedScene>(StringValues.pausePanel);
         _player = GetNode<Player>("Player");
         _pillarSpawnTimer = GetNode<Timer>("PillarSpawnMachine/Timer");
 

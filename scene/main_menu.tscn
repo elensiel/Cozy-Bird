@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://dlx1yfg21pbve"]
 
-[ext_resource type="Texture2D" uid="uid://b6jklhaxnjwcm" path="res://sprite/menu bg.png" id="1_3n8pn"]
-[ext_resource type="Script" path="res://script_sharp/MainMenu.cs" id="1_38vga"]
+[ext_resource type="Texture2D" uid="uid://c4led4t7gxjjj" path="res://sprite/menu bg.png" id="1_3n8pn"]
+[ext_resource type="Script" uid="uid://x3qv3n44jyai" path="res://script_sharp/MainMenu.cs" id="1_38vga"]
 [ext_resource type="Theme" uid="uid://bcihif0mi53lh" path="res://resource/menu.tres" id="2_xwpse"]
-[ext_resource type="AudioStream" uid="uid://3xra2sxxu5o" path="res://audio/sfx/button_press.wav" id="4_nxbtr"]
+[ext_resource type="AudioStream" uid="uid://mvoxylrfnb53" path="res://audio/sfx/button_press.wav" id="4_nxbtr"]
 
 [node name="MainMenu" type="Node"]
 script = ExtResource("1_38vga")
