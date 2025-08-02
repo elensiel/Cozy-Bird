@@ -1,0 +1,81 @@
+[gd_scene load_steps=4 format=3 uid="uid://brfd3thcxjwv5"]
+
+[ext_resource type="Theme" uid="uid://bjffnof0x6s54" path="res://resource/main_menu.tres" id="1_2fwvj"]
+[ext_resource type="Texture2D" uid="uid://dj18tkhaxktjx" path="res://sprite/main_menu_bg.png" id="1_3er1b"]
+[ext_resource type="Script" uid="uid://dh4m6fr8hj3ng" path="res://script/gd/main_menu.gd" id="1_hxu56"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_2fwvj")
+script = ExtResource("1_hxu56")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -100
+custom_minimum_size = Vector2(1440, 1080)
+layout_mode = 0
+offset_right = 1440.0
+offset_bottom = 1080.0
+texture = ExtResource("1_3er1b")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -150.5
+offset_right = 120.0
+offset_bottom = 150.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="HighscoreLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+text = "HIGH SCORE: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(240, 240)
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer/CenterContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Play" type="Button" parent="VBoxContainer/PanelContainer/CenterContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(120, 48)
+layout_mode = 2
+focus_mode = 0
+action_mode = 0
+text = "PLAY"
+
+[node name="Quit" type="Button" parent="VBoxContainer/PanelContainer/CenterContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(120, 48)
+layout_mode = 2
+focus_mode = 0
+action_mode = 0
+text = "QUIT"
+
+[node name="DummyLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
