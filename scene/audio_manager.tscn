@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://t1102pv8gyy2"]
+
+[ext_resource type="Script" uid="uid://dseh7njnyo8mi" path="res://script/gd/audio_manager.gd" id="1_h5pei"]
+[ext_resource type="AudioStream" uid="uid://mvoxylrfnb53" path="res://audio/sfx/button_press.wav" id="2_pgo6v"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_pgo6v"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("2_pgo6v")
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_h5pei")
+
+[node name="ButtonPress" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_pgo6v")
+bus = &"button_press"
+playback_type = 2
+
+[node name="Caw" type="AudioStreamPlayer" parent="."]
+playback_type = 2
+
+[node name="Flap" type="AudioStreamPlayer" parent="."]
+playback_type = 2
+
+[node name="Score" type="AudioStreamPlayer" parent="."]
+playback_type = 2

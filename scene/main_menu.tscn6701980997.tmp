@@ -8,7 +8,7 @@
 resource_name = "main_menu_bg"
 script/source = "extends TextureRect
 
-func _enter_tree() -> void:
+func _init() -> void:
 	var viewport_size: Vector2 = get_viewport().get_visible_rect().size
 	
 	custom_minimum_size.x = viewport_size.x * 3
@@ -19,12 +19,12 @@ func _enter_tree() -> void:
 resource_name = "main_menu_panel"
 script/source = "extends PanelContainer
 
-func _enter_tree() -> void:
+func _init() -> void:
 	var viewport_size: Vector2 = get_viewport().get_visible_rect().size
-	
 	custom_minimum_size.x = viewport_size.x / 2
 	custom_minimum_size.y = viewport_size.x / 2
-	
+
+func _enter_tree() -> void:
 	for button in $CenterContainer/MarginContainer/VBoxContainer.get_children():
 		button.custom_minimum_size.x = custom_minimum_size.x / 2
 		button.custom_minimum_size.y = custom_minimum_size.x / 4
@@ -107,6 +107,3 @@ size_flags_horizontal = 4
 size_flags_vertical = 2
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[connection signal="pressed" from="VBoxContainer/PanelContainer/CenterContainer/MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="VBoxContainer/PanelContainer/CenterContainer/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

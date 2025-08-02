@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.4", "Mobile")
 run/max_fps=60
 config/icon="res://sprite/ui/icon.svg"
 
+[autoload]
+
+AudioManager="*res://scene/audio_manager.tscn"
+
 [display]
 
 window/size/viewport_width=480
