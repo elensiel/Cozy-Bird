@@ -1,0 +1,111 @@
+[gd_scene load_steps=14 format=3 uid="uid://biji1xm5vjd5i"]
+
+[ext_resource type="Script" uid="uid://bqileo1cabp0p" path="res://script/gd/play_scene.gd" id="1_lft4v"]
+[ext_resource type="Script" uid="uid://bx1wrm46rm5hp" path="res://script/gd/parallax_background.gd" id="1_yrlg2"]
+[ext_resource type="Texture2D" uid="uid://dx58hs02sd358" path="res://sprite/play_scene_bg.png" id="2_dlxd1"]
+[ext_resource type="Texture2D" uid="uid://b64301trh8msr" path="res://sprite/play_scene_bldgs_back.png" id="3_ghc02"]
+[ext_resource type="Texture2D" uid="uid://b84sgjy26a3xo" path="res://sprite/play_scene_clouds_back.png" id="4_dpch1"]
+[ext_resource type="Texture2D" uid="uid://dcm63rasur2pc" path="res://sprite/play_scene_bldgs_mid.png" id="5_eee0c"]
+[ext_resource type="Texture2D" uid="uid://c0q54g8t7yghn" path="res://sprite/play_scene_clouds_mid.png" id="6_lft4v"]
+[ext_resource type="Texture2D" uid="uid://37qp487tk17v" path="res://sprite/play_scene_bldgs_front.png" id="7_4ukpk"]
+[ext_resource type="Texture2D" uid="uid://dim8nybn5fxdi" path="res://sprite/play_scene_clouds_front.png" id="8_y6jde"]
+[ext_resource type="PackedScene" uid="uid://dnultiela6u37" path="res://scene/crow.tscn" id="10_4ukpk"]
+[ext_resource type="Script" uid="uid://b1prtirspb0c7" path="res://script/gd/walls.gd" id="11_y6jde"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4ukpk"]
+
+[sub_resource type="GDScript" id="GDScript_y6jde"]
+resource_name = "bottom_wall"
+script/source = "extends Area2D
+
+# ensure it is at the bottom-most of the screen
+func _ready() -> void:
+	position.y = get_viewport().get_visible_rect().size.y
+"
+
+[node name="PlayScene" type="Node"]
+script = ExtResource("1_lft4v")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_ignore_camera_zoom = true
+script = ExtResource("1_yrlg2")
+
+[node name="Back" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="MainBackground" type="TextureRect" parent="ParallaxBackground/Back"]
+custom_minimum_size = Vector2(2400, 1080)
+offset_right = 480.0
+offset_bottom = 1080.0
+texture = ExtResource("2_dlxd1")
+expand_mode = 1
+
+[node name="Buildings" type="TextureRect" parent="ParallaxBackground/Back"]
+custom_minimum_size = Vector2(2400, 1080)
+offset_right = 480.0
+offset_bottom = 1080.0
+texture = ExtResource("3_ghc02")
+expand_mode = 1
+
+[node name="Clouds" type="TextureRect" parent="ParallaxBackground/Back"]
+custom_minimum_size = Vector2(2400, 1080)
+offset_right = 480.0
+offset_bottom = 1080.0
+texture = ExtResource("4_dpch1")
+expand_mode = 1
+
+[node name="Middle" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Buildings" type="TextureRect" parent="ParallaxBackground/Middle"]
+custom_minimum_size = Vector2(2400, 1080)
+offset_right = 480.0
+offset_bottom = 1080.0
+texture = ExtResource("5_eee0c")
+expand_mode = 1
+
+[node name="Clouds" type="TextureRect" parent="ParallaxBackground/Middle"]
+custom_minimum_size = Vector2(2400, 1080)
+offset_right = 480.0
+offset_bottom = 1080.0
+texture = ExtResource("6_lft4v")
+expand_mode = 1
+
+[node name="Front" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Buildings" type="TextureRect" parent="ParallaxBackground/Front"]
+custom_minimum_size = Vector2(2400, 1080)
+offset_right = 480.0
+offset_bottom = 1080.0
+texture = ExtResource("7_4ukpk")
+expand_mode = 1
+
+[node name="Clouds" type="TextureRect" parent="ParallaxBackground/Front"]
+custom_minimum_size = Vector2(2400, 1080)
+offset_right = 480.0
+offset_bottom = 1080.0
+texture = ExtResource("8_y6jde")
+expand_mode = 1
+
+[node name="Crow" parent="." instance=ExtResource("10_4ukpk")]
+position = Vector2(240, 540)
+
+[node name="Walls" type="Node" parent="."]
+script = ExtResource("11_y6jde")
+
+[node name="TopWall" type="Area2D" parent="Walls"]
+collision_layer = 4
+input_pickable = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopWall"]
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_4ukpk")
+
+[node name="BottomWall" type="Area2D" parent="Walls"]
+position = Vector2(0, 1080)
+collision_layer = 4
+input_pickable = false
+monitorable = false
+script = SubResource("GDScript_y6jde")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/BottomWall"]
+shape = SubResource("WorldBoundaryShape2D_4ukpk")
