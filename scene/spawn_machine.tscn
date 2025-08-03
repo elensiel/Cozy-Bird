@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1b5oc0hcvqgo"]
+
+[ext_resource type="Script" uid="uid://c0usfoxr122m6" path="res://script/gd/spawn_machine.gd" id="1_agkiy"]
+
+[node name="SpawnMachine" type="Node"]
+script = ExtResource("1_agkiy")
+
+[node name="Active" type="Node2D" parent="."]
+
+[node name="Hold" type="Node2D" parent="."]
+visible = false
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.25
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

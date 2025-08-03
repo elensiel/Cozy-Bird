@@ -46,7 +46,7 @@ public partial class CrowPhysics : Node
 
 	public void Flap()
 	{
-		_crow.Velocity = new Vector2(_crow.Velocity.X, JumpVelocity);
+		_crow.Velocity = _crow.Velocity with { Y = JumpVelocity };
 		_crow.Rotation = Mathf.DegToRad(JumpRotation);
 		_sprite.Frame = 1;
 	}

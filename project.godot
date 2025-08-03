@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.4", "C#", "Mobile")
 run/max_fps=60
 config/icon="uid://bfp253yhv8odq"
 
+[audio]
+
+buses/default_bus_layout="uid://4v8yd215p43e"
+
 [autoload]
 
 AudioManager="*res://scene/audio_manager.tscn"
@@ -54,7 +58,7 @@ jump={
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Pillar"
 2d_physics/layer_3="Wall"
-2d_physics/layer_4="Dead Zone"
+2d_physics/layer_4="Despawn Zone"
 
 [rendering]
 

@@ -23,5 +23,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			StateMachine.change_state(StateMachine.State.RUNNING)
 		
 		physics.Flap()
+		AudioManager.flap.play()
+		if randi_range(0, 10) <= 3: AudioManager.caw.play()
+		
 	elif event.is_action_pressed("ui_cancel"):
 		StateMachine.change_state(StateMachine.State.PAUSED)

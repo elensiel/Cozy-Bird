@@ -23,19 +23,20 @@ func change_state(new_state: State) -> void:
 			_handle_dead()
 	
 	_handle_processes()
-	_handle_visibility()
+	#_handle_visibility()
 
 func _handle_new() -> void:
 	pass
 
 func _handle_running() -> void:
-	pass
+	if ObjectReferences.spawn_timer.is_stopped():
+		ObjectReferences.spawn_timer.start()
 
 func _handle_paused() -> void:
 	pass
 
 func _handle_dead() -> void:
-	pass
+	ObjectReferences.spawn_timer.stop()
 
 func _handle_processes() -> void:
 	# Crow processes
@@ -44,6 +45,13 @@ func _handle_processes() -> void:
 	
 	# ParallaxBackground
 	ObjectReferences.parallax_background.set_process(current_state == State.RUNNING)
+	
+	# pillars
+	for pillar in ObjectReferences.spawn_machine.active.get_children():
+		pillar.set_physics_process(current_state == State.RUNNING)
+	
+	# spawn timer
+	ObjectReferences.spawn_timer.paused = current_state != State.RUNNING
 
-func _handle_visibility() -> void:
-	pass
+#func _handle_visibility() -> void:
+	#pass

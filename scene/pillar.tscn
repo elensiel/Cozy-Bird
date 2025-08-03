@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0g2dc4cr873o"]
+
+[ext_resource type="Script" uid="uid://dgnws0amgquea" path="res://script/gd/pillar.gd" id="1_hpo3q"]
+[ext_resource type="Texture2D" uid="uid://gbhhj2naqbw6" path="res://sprite/pillar.png" id="2_lmaer"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ky3wf"]
+size = Vector2(173, 528)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2yrfi"]
+size = Vector2(220, 86)
+
+[node name="Pillar" type="Node2D"]
+script = ExtResource("1_hpo3q")
+
+[node name="TopPillar" type="Area2D" parent="."]
+scale = Vector2(0.5, 1)
+collision_layer = 2
+collision_mask = 9
+input_pickable = false
+
+[node name="Sprite2D" type="Sprite2D" parent="TopPillar"]
+position = Vector2(0, -307)
+scale = Vector2(4.8, 4.8)
+texture = ExtResource("2_lmaer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopPillar"]
+position = Vector2(0.5, -350)
+shape = SubResource("RectangleShape2D_ky3wf")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="TopPillar"]
+position = Vector2(0, -43)
+shape = SubResource("RectangleShape2D_2yrfi")
+
+[node name="BottomPillar" type="Area2D" parent="."]
+rotation = 3.14159
+scale = Vector2(0.5, 1)
+collision_layer = 2
+collision_mask = 9
+input_pickable = false
+
+[node name="Sprite2D" type="Sprite2D" parent="BottomPillar"]
+position = Vector2(0, -307)
+scale = Vector2(4.8, 4.8)
+texture = ExtResource("2_lmaer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomPillar"]
+position = Vector2(0.5, -350)
+shape = SubResource("RectangleShape2D_ky3wf")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="BottomPillar"]
+position = Vector2(0, -43)
+shape = SubResource("RectangleShape2D_2yrfi")
