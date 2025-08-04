@@ -1,8 +1,12 @@
 extends Node2D
 class_name Pillar
 
+@onready var pillars : Array[Area2D] = [$TopPillar, $BottomPillar]
+@onready var score_line: Area2D = $ScoreLine
+
 const DISTANCE: float = 100.0
 const SPEED: float = 150
+const PITCH_INCREASE: float = 0.005
 
 var collisions : Array[CollisionShape2D]
 var size: Vector2 = Vector2(0, 0)
@@ -14,19 +18,18 @@ func _ready() -> void:
 	$TopPillar.position.y -= DISTANCE * scale.y
 	$BottomPillar.position.y += DISTANCE * scale.y
 	
-	# connect detection signal
-	for child in get_children(): 
-		child.connect("body_entered", Callable.create(self, "_on_pillar_body_entered"))
-	
-	# get collision for easier access later
-	for area in get_children():
-		for child in area.get_children():
+	# setting the most wide shape size
+	for pillar in pillars:
+		pillar.connect("body_entered", Callable.create(self, "_on_pillar_body_entered"))
+		
+		for child in pillar.get_children():
 			if child is CollisionShape2D:
 				collisions.append(child)
 				
-				# setting the most wide shape size
 				if child.shape.size.x > size.x:
 					size = child.shape.size
+	
+	score_line.position.x += size.x / 2
 
 func _physics_process(delta: float) -> void:
 	position.x -= SPEED * delta
@@ -35,10 +38,17 @@ func _physics_process(delta: float) -> void:
 ## enable collision when visible otherwise disable it
 func update_detection() -> void:
 	if get_parent():
+		score_line.get_child(0).disabled = !get_parent().visible
 		for collision in collisions:
 			collision.disabled = !get_parent().visible
 
+## killing signal
 func _on_pillar_body_entered(crow: Crow) -> void:
 	if StateMachine.current_state != StateMachine.State.DYING:
 		StateMachine.call_deferred("change_state", StateMachine.State.DYING)
 		crow.physics.Flap()
+
+## score signal
+func _on_score_line_body_entered(_crow: Crow) -> void:
+	score_line.get_child(0).set_deferred("disabled", true)
+	ScoreManager.increase_score()

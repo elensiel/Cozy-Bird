@@ -9,8 +9,10 @@ enum State {
 }
 
 var current_state: State
+var previous_state: State
 
 func change_state(new_state: State) -> void:
+	previous_state = current_state
 	current_state = new_state
 	
 	match current_state:
@@ -30,7 +32,7 @@ func change_state(new_state: State) -> void:
 	_handle_visibility()
 
 func _handle_new() -> void:
-	pass
+	ScoreManager.current_score = 0
 
 func _handle_running() -> void:
 	if ObjectReferences.spawn_timer.is_stopped():
@@ -44,7 +46,7 @@ func _handle_dying() -> void:
 	ObjectReferences.death_timer.start()
 
 func _handle_dead() -> void:
-	pass
+	ScoreManager.check_score()
 
 func _handle_collisions() -> void:
 	ObjectReferences.crow.collision.disabled = !current_state == State.RUNNING
@@ -56,6 +58,7 @@ func _handle_collisions() -> void:
 	
 	# pillar's
 	for pillar in ObjectReferences.spawn_machine.active.get_children():
+		pillar.score_line.get_child(0).disabled = !current_state == State.RUNNING
 		for collision in pillar.collisions:
 			collision.disabled = !current_state == State.RUNNING
 
@@ -79,7 +82,7 @@ func _handle_processes() -> void:
 	ObjectReferences.spawn_timer.paused = current_state != State.RUNNING
 
 func _handle_visibility() -> void:
-	ObjectReferences.ui_elements.visible = (current_state == State.PAUSED) or (current_state == State.DEAD)
-	#ObjectReferences.ui_elements.panel.visible = (current_state == State.PAUSED) or (current_state == State.DEAD)
+	ObjectReferences.ui_elements.panel.visible = (current_state == State.PAUSED) or (current_state == State.DEAD)
 	ObjectReferences.ui_elements.retry_panel.visible = (current_state == State.DEAD)
 	ObjectReferences.ui_elements.pause_panel.visible = (current_state == State.PAUSED)
+	ObjectReferences.ui_elements.pause_button.visible = (!current_state == State.DYING) and (!current_state == State.DEAD)

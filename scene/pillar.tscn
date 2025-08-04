@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://d0g2dc4cr873o"]
+[gd_scene load_steps=6 format=3 uid="uid://d0g2dc4cr873o"]
 
 [ext_resource type="Script" uid="uid://dgnws0amgquea" path="res://script/gd/pillar.gd" id="1_hpo3q"]
 [ext_resource type="Texture2D" uid="uid://gbhhj2naqbw6" path="res://sprite/pillar.png" id="2_lmaer"]
@@ -8,6 +8,10 @@ size = Vector2(173, 528)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2yrfi"]
 size = Vector2(220, 86)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_hpo3q"]
+a = Vector2(500, 0)
+b = Vector2(-500, 0)
 
 [node name="Pillar" type="Node2D"]
 script = ExtResource("1_hpo3q")
@@ -50,3 +54,13 @@ shape = SubResource("RectangleShape2D_ky3wf")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="BottomPillar"]
 position = Vector2(0, -43)
 shape = SubResource("RectangleShape2D_2yrfi")
+
+[node name="ScoreLine" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreLine"]
+rotation = -1.5708
+shape = SubResource("SegmentShape2D_hpo3q")
+disabled = true
+
+[connection signal="body_entered" from="TopPillar" to="." method="_on_top_pillar_body_entered"]
+[connection signal="body_entered" from="ScoreLine" to="." method="_on_score_line_body_entered"]
