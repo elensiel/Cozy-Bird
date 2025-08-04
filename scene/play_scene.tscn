@@ -1,18 +1,20 @@
-[gd_scene load_steps=17 format=3 uid="uid://biji1xm5vjd5i"]
+[gd_scene load_steps=20 format=3 uid="uid://biji1xm5vjd5i"]
 
 [ext_resource type="Script" uid="uid://bqileo1cabp0p" path="res://script/gd/play_scene.gd" id="1_lft4v"]
 [ext_resource type="Script" uid="uid://bx1wrm46rm5hp" path="res://script/gd/parallax_background.gd" id="1_yrlg2"]
-[ext_resource type="Texture2D" uid="uid://dx58hs02sd358" path="res://sprite/play_scene_bg.png" id="2_dlxd1"]
-[ext_resource type="Texture2D" uid="uid://b64301trh8msr" path="res://sprite/play_scene_bldgs_back.png" id="3_ghc02"]
-[ext_resource type="Texture2D" uid="uid://b84sgjy26a3xo" path="res://sprite/play_scene_clouds_back.png" id="4_dpch1"]
-[ext_resource type="Texture2D" uid="uid://dcm63rasur2pc" path="res://sprite/play_scene_bldgs_mid.png" id="5_eee0c"]
-[ext_resource type="Texture2D" uid="uid://c0q54g8t7yghn" path="res://sprite/play_scene_clouds_mid.png" id="6_lft4v"]
-[ext_resource type="Texture2D" uid="uid://37qp487tk17v" path="res://sprite/play_scene_bldgs_front.png" id="7_4ukpk"]
-[ext_resource type="Texture2D" uid="uid://dim8nybn5fxdi" path="res://sprite/play_scene_clouds_front.png" id="8_y6jde"]
+[ext_resource type="Texture2D" uid="uid://dx58hs02sd358" path="res://sprite/bg/play_scene_bg.png" id="2_dlxd1"]
+[ext_resource type="Texture2D" uid="uid://b64301trh8msr" path="res://sprite/bg/play_scene_bldgs_back.png" id="3_ghc02"]
+[ext_resource type="Texture2D" uid="uid://b84sgjy26a3xo" path="res://sprite/bg/play_scene_clouds_back.png" id="4_dpch1"]
+[ext_resource type="Texture2D" uid="uid://dcm63rasur2pc" path="res://sprite/bg/play_scene_bldgs_mid.png" id="5_eee0c"]
+[ext_resource type="Texture2D" uid="uid://c0q54g8t7yghn" path="res://sprite/bg/play_scene_clouds_mid.png" id="6_lft4v"]
+[ext_resource type="Texture2D" uid="uid://37qp487tk17v" path="res://sprite/bg/play_scene_bldgs_front.png" id="7_4ukpk"]
+[ext_resource type="Texture2D" uid="uid://dim8nybn5fxdi" path="res://sprite/bg/play_scene_clouds_front.png" id="8_y6jde"]
 [ext_resource type="PackedScene" uid="uid://dnultiela6u37" path="res://scene/crow.tscn" id="10_4ukpk"]
 [ext_resource type="PackedScene" uid="uid://b1b5oc0hcvqgo" path="res://scene/spawn_machine.tscn" id="11_2oann"]
 [ext_resource type="Script" uid="uid://b1prtirspb0c7" path="res://script/gd/walls.gd" id="11_y6jde"]
 [ext_resource type="Script" uid="uid://btaagt43kkney" path="res://script/gd/despawn_zone.gd" id="13_2oann"]
+[ext_resource type="Theme" uid="uid://c28tms1jeenlf" path="res://resource/play_scene_ui.tres" id="14_ac51l"]
+[ext_resource type="Script" uid="uid://bvvpg7dvxplrx" path="res://script/gd/ui_elements.gd" id="15_vsxha"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4ukpk"]
 
@@ -26,6 +28,17 @@ func _ready() -> void:
 "
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ac51l"]
+
+[sub_resource type="GDScript" id="GDScript_2oann"]
+resource_name = "death_timer"
+script/source = "extends Timer
+
+func _init() -> void:
+	ObjectReferences.death_timer = self
+
+func _on_timeout() -> void:
+	StateMachine.change_state(StateMachine.State.DEAD)
+"
 
 [node name="PlayScene" type="Node"]
 script = ExtResource("1_lft4v")
@@ -89,6 +102,11 @@ offset_bottom = 1080.0
 texture = ExtResource("8_y6jde")
 expand_mode = 1
 
+[node name="Crow" parent="." instance=ExtResource("10_4ukpk")]
+position = Vector2(240, 540)
+
+[node name="SpawnMachine" parent="." instance=ExtResource("11_2oann")]
+
 [node name="Walls" type="Node" parent="."]
 script = ExtResource("11_y6jde")
 
@@ -111,11 +129,6 @@ script = SubResource("GDScript_y6jde")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/BottomWall"]
 shape = SubResource("WorldBoundaryShape2D_4ukpk")
 
-[node name="SpawnMachine" parent="." instance=ExtResource("11_2oann")]
-
-[node name="Crow" parent="." instance=ExtResource("10_4ukpk")]
-position = Vector2(240, 540)
-
 [node name="DespawnZone" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 2
@@ -127,4 +140,115 @@ script = ExtResource("13_2oann")
 rotation = 1.5708
 shape = SubResource("WorldBoundaryShape2D_ac51l")
 
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+script = SubResource("GDScript_2oann")
+
+[node name="UiElements" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("14_ac51l")
+script = ExtResource("15_vsxha")
+
+[node name="Panel" type="Panel" parent="UiElements"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PausePanel" type="PanelContainer" parent="UiElements"]
+visible = false
+z_index = 100
+custom_minimum_size = Vector2(240, 240)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -120.0
+offset_right = 120.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="UiElements/PausePanel"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UiElements/PausePanel/CenterContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UiElements/PausePanel/CenterContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Continue" type="Button" parent="UiElements/PausePanel/CenterContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(120, 48)
+layout_mode = 2
+focus_mode = 0
+action_mode = 0
+text = "CONTINUE"
+
+[node name="MainMenu" type="Button" parent="UiElements/PausePanel/CenterContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(120, 48)
+layout_mode = 2
+focus_mode = 0
+action_mode = 0
+text = "MAIN MENU"
+
+[node name="RetryPanel" type="PanelContainer" parent="UiElements"]
+visible = false
+z_index = 100
+custom_minimum_size = Vector2(240, 240)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -120.0
+offset_right = 120.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="UiElements/RetryPanel"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UiElements/RetryPanel/CenterContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UiElements/RetryPanel/CenterContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Retry" type="Button" parent="UiElements/RetryPanel/CenterContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(120, 48)
+layout_mode = 2
+focus_mode = 0
+action_mode = 0
+text = "RETRY"
+
+[node name="MainMenu" type="Button" parent="UiElements/RetryPanel/CenterContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(120, 48)
+layout_mode = 2
+focus_mode = 0
+action_mode = 0
+text = "MAIN MENU"
+
 [connection signal="area_entered" from="DespawnZone" to="DespawnZone" method="_on_area_entered"]
+[connection signal="timeout" from="DeathTimer" to="DeathTimer" method="_on_timeout"]
+[connection signal="pressed" from="UiElements/PausePanel/CenterContainer/MarginContainer/VBoxContainer/Continue" to="UiElements" method="_on_continue_pressed"]
+[connection signal="pressed" from="UiElements/PausePanel/CenterContainer/MarginContainer/VBoxContainer/MainMenu" to="UiElements" method="_on_main_menu_pressed"]
+[connection signal="pressed" from="UiElements/RetryPanel/CenterContainer/MarginContainer/VBoxContainer/Retry" to="UiElements" method="_on_retry_pressed"]
+[connection signal="pressed" from="UiElements/RetryPanel/CenterContainer/MarginContainer/VBoxContainer/MainMenu" to="UiElements" method="_on_main_menu_pressed"]

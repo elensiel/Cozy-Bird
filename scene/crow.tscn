@@ -16,6 +16,10 @@ motion_mode = 1
 platform_on_leave = 2
 script = ExtResource("1_k462a")
 
+[node name="PhysicsLogic" type="Node" parent="."]
+script = ExtResource("3_l8xai")
+RotationSpeed = 125.0
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_h0acc")
 hframes = 2
@@ -24,7 +28,3 @@ hframes = 2
 position = Vector2(-1.5, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_h0acc")
-
-[node name="PhysicsLogic" type="Node" parent="."]
-script = ExtResource("3_l8xai")
-RotationSpeed = 125.0

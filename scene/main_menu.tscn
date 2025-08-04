@@ -1,15 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://brfd3thcxjwv5"]
+[gd_scene load_steps=7 format=3 uid="uid://brfd3thcxjwv5"]
 
 [ext_resource type="Theme" uid="uid://bjffnof0x6s54" path="res://resource/main_menu.tres" id="1_2fwvj"]
-[ext_resource type="Texture2D" uid="uid://dj18tkhaxktjx" path="res://sprite/main_menu_bg.png" id="1_3er1b"]
+[ext_resource type="Texture2D" uid="uid://dj18tkhaxktjx" path="res://sprite/bg/main_menu_bg.png" id="1_3er1b"]
 [ext_resource type="Script" uid="uid://dh4m6fr8hj3ng" path="res://script/gd/main_menu.gd" id="1_hxu56"]
+[ext_resource type="Script" uid="uid://csmajiawoa105" path="res://script/gd/highscore_label.gd" id="4_0iwki"]
 
 [sub_resource type="GDScript" id="GDScript_2fwvj"]
 resource_name = "main_menu_bg"
 script/source = "extends TextureRect
 
 func _enter_tree() -> void:
-	var viewport_size: Vector2 = get_viewport().get_visible_rect().size
+	var viewport_size: Vector2 = ViewportHelper.GetCurrentViewport().size
 	
 	custom_minimum_size.x = viewport_size.x * 3
 	custom_minimum_size.y = viewport_size.y
@@ -20,7 +21,7 @@ resource_name = "main_menu_panel"
 script/source = "extends PanelContainer
 
 func _enter_tree() -> void:
-	var viewport_size: Vector2 = get_viewport().get_visible_rect().size
+	var viewport_size: Vector2 = ViewportHelper.GetCurrentViewport().size
 	
 	custom_minimum_size.x = viewport_size.x / 2
 	custom_minimum_size.y = viewport_size.x / 2
@@ -72,6 +73,7 @@ size_flags_vertical = 10
 text = "HIGH SCORE: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("4_0iwki")
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(240, 240)
@@ -93,6 +95,8 @@ layout_mode = 2
 focus_mode = 0
 action_mode = 0
 text = "PLAY"
+icon_alignment = 1
+expand_icon = true
 
 [node name="Quit" type="Button" parent="VBoxContainer/PanelContainer/CenterContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(120, 48)

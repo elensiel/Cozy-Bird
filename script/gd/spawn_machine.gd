@@ -4,6 +4,7 @@ class_name SpawnMachine
 @onready var active: Node2D = $Active
 @onready var hold: Node2D = $Hold
 @onready var timer: Timer = $Timer
+@onready var spawn_helper: Node = $SpawnHelper
 
 const INITIAL_COUNT: int = 5
 const HEIGHT_RANGE: float = 100
@@ -18,12 +19,11 @@ func _ready() -> void:
 	for i in INITIAL_COUNT:
 		var instance: Pillar = pillar_scene.instantiate()
 		despawn(instance)
-		instance.position.x = get_viewport().get_visible_rect().end.x # avoid being detected by despawn zone      
 
 func spawn(pillar: Pillar) -> void:
 	# set position
-	var x: float = get_viewport().get_visible_rect().end.x + (pillar.get_size().x / 2)
-	var y: float = _get_random_height()
+	var x: float = ViewportHelper.GetCurrentViewport().end.x + (pillar.size.x / 2)
+	var y: float = spawn_helper.GetRandomHeight(ViewportHelper.GetCurrentViewport().size)
 	pillar.position = Vector2(x, y)
 	
 	# pooling
@@ -34,11 +34,8 @@ func spawn(pillar: Pillar) -> void:
 	
 	pillar.update_detection()
 	pillar.set_physics_process(true) # enable movement
-	
-	print(active.get_child_count())
 
 func despawn(pillar: Pillar) -> void:
-	pillar.update_detection()
 	pillar.set_physics_process(false) # disable movement
 	
 	# pooling
@@ -46,10 +43,8 @@ func despawn(pillar: Pillar) -> void:
 		active.remove_child(pillar)
 	if pillar.get_parent() != hold:
 		hold.add_child(pillar)
-
-func _get_random_height() -> float:
-	var midpoint: float = get_viewport().get_visible_rect().size.y / 2
-	return midpoint + randf_range(-HEIGHT_RANGE, HEIGHT_RANGE)
+	
+	pillar.update_detection()
 
 func _on_timer_timeout() -> void:
 	spawn(hold.get_child(hold.get_child_count() - 1))     

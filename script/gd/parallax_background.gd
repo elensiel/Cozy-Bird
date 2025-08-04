@@ -7,7 +7,7 @@ func _init() -> void:
 	ObjectReferences.parallax_background = self
 
 func _ready() -> void:
-	var viewport: Vector2 = get_viewport().get_visible_rect().size
+	var viewport: Vector2 = ViewportHelper.GetCurrentViewport().size
 	var width_modifier: int = 5
 	var motion_scale_modifier: float = 0.6
 	

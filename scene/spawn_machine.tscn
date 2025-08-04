@@ -1,9 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://b1b5oc0hcvqgo"]
+[gd_scene load_steps=3 format=3 uid="uid://b1b5oc0hcvqgo"]
 
 [ext_resource type="Script" uid="uid://c0usfoxr122m6" path="res://script/gd/spawn_machine.gd" id="1_agkiy"]
+[ext_resource type="Script" uid="uid://ctwlxm553rtj2" path="res://script/cs/SpawnHelper.cs" id="2_gm7xf"]
 
 [node name="SpawnMachine" type="Node"]
 script = ExtResource("1_agkiy")
+
+[node name="SpawnHelper" type="Node" parent="."]
+script = ExtResource("2_gm7xf")
 
 [node name="Active" type="Node2D" parent="."]
 
@@ -11,6 +15,6 @@ script = ExtResource("1_agkiy")
 visible = false
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 3.25
+wait_time = 2.5
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

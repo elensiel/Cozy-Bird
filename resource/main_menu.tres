@@ -1,9 +1,9 @@
 [gd_resource type="Theme" load_steps=9 format=3 uid="uid://bjffnof0x6s54"]
 
-[ext_resource type="Texture2D" uid="uid://dwp4k8lyq8a5f" path="res://sprite/ui/button_hover.png" id="1_2gqx2"]
-[ext_resource type="Texture2D" uid="uid://di5s1hi4bm7cg" path="res://sprite/ui/panel.png" id="1_f714f"]
-[ext_resource type="Texture2D" uid="uid://8uberc8omajj" path="res://sprite/ui/button_normal.png" id="2_hi3ix"]
-[ext_resource type="Texture2D" uid="uid://bob8cxhwi35ag" path="res://sprite/ui/button_pressed.png" id="3_s58b5"]
+[ext_resource type="Texture2D" uid="uid://2t70k8hbkele" path="res://sprite/ui/button_hover.webp" id="1_2gqx2"]
+[ext_resource type="Texture2D" uid="uid://r8pqk5fsenof" path="res://sprite/ui/button_normal.webp" id="2_hi3ix"]
+[ext_resource type="Texture2D" uid="uid://c4vxmno5g16bc" path="res://sprite/ui/button_pressed.webp" id="3_s58b5"]
+[ext_resource type="Texture2D" uid="uid://b4r7n0qfjts1g" path="res://sprite/ui/panel.webp" id="4_hh844"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hh844"]
 content_margin_bottom = 10.0
@@ -18,7 +18,7 @@ content_margin_bottom = 7.0
 texture = ExtResource("3_s58b5")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dibma"]
-texture = ExtResource("1_f714f")
+texture = ExtResource("4_hh844")
 
 [resource]
 Button/constants/outline_size = 6

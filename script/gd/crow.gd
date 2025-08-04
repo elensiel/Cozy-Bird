@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Crow
 
 @onready var physics: Node = $PhysicsLogic
+@onready var collision: CollisionShape2D = $CollisionShape2D
 
 const JUMP_VELOCITY: float = -350.0
 const JUMP_ROTATION: float = -30.0
@@ -12,10 +13,8 @@ func _init() -> void:
 	ObjectReferences.crow = self
 
 func _enter_tree() -> void:
-	var target_size: Vector2 = Vector2(480, 1080)
-	var current_viewport_size: Vector2 = get_viewport().get_visible_rect().size
-	scale *= current_viewport_size / target_size
-	position = get_viewport().get_visible_rect().size / 2
+	scale *= ViewportHelper.GetCalculatedScale()
+	position = ViewportHelper.GetCurrentViewport().size / 2
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):

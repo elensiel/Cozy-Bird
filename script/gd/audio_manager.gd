@@ -4,3 +4,7 @@ extends Node
 @onready var caw: AudioStreamPlayer = $Caw
 @onready var flap: AudioStreamPlayer = $Flap
 @onready var score: AudioStreamPlayer = $Score
+
+func play_button_press() -> void:
+	button_press.play()
+	await button_press.finished
