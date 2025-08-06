@@ -9,7 +9,7 @@ enum State {
 }
 
 var current_state: State
-var previous_state: State
+var previous_state: State # used in state change pause -> new/running
 
 func change_state(new_state: State) -> void:
 	previous_state = current_state
@@ -39,6 +39,10 @@ func _handle_running() -> void:
 		ObjectReferences.spawn_timer.start()
 
 func _handle_paused() -> void:
+	#ObjectReferences.spawn_timer.paused = false
+	# the timer pause handling is on the process since setting
+	# its flag all over the _handle function is kind of redundant
+	
 	pass
 
 func _handle_dying() -> void:
@@ -63,26 +67,41 @@ func _handle_collisions() -> void:
 			collision.disabled = !current_state == State.RUNNING
 
 func _handle_processes() -> void:
-	# Crow processes
-	ObjectReferences.crow.physics.set_physics_process(current_state == State.RUNNING or current_state == State.DYING)
-	ObjectReferences.crow.set_process_unhandled_input(
-		current_state == State.NEW or current_state == State.RUNNING)
-		#current_state != State.DEAD and current_state != State.PAUSED and current_state != State.DYING)
+	# crow movement
+	ObjectReferences.crow.physics.set_physics_process(
+		current_state == State.RUNNING or 
+		current_state == State.DYING
+	)
 	
-	# ParallaxBackground
+	# tap detection
+	ObjectReferences.crow.set_process_unhandled_input(
+		current_state == State.NEW or 
+		current_state == State.RUNNING
+	)
+	
+	# background scrolling
 	ObjectReferences.parallax_background.set_process(current_state == State.RUNNING)
 	
-	# pillars
+	# pillar movement
 	for pool in ObjectReferences.spawn_machine.get_children():
 		if pool is Node2D:
 			for pillar in pool.get_children():
 				pillar.set_physics_process(current_state == State.RUNNING)
 	
-	# spawn timer
 	ObjectReferences.spawn_timer.paused = current_state != State.RUNNING
 
 func _handle_visibility() -> void:
-	ObjectReferences.ui_elements.panel.visible = (current_state == State.PAUSED) or (current_state == State.DEAD)
+	# panel containers
 	ObjectReferences.ui_elements.retry_panel.visible = (current_state == State.DEAD)
 	ObjectReferences.ui_elements.pause_panel.visible = (current_state == State.PAUSED)
-	ObjectReferences.ui_elements.pause_button.visible = (!current_state == State.DYING) and (!current_state == State.DEAD)
+	
+	# the background dim whenever a panel is visible
+	ObjectReferences.ui_elements.panel.visible = (
+		ObjectReferences.ui_elements.retry_panel.visible or 
+		ObjectReferences.ui_elements.pause_panel.visible
+	)
+	
+	ObjectReferences.ui_elements.pause_button.visible = (
+		current_state == State.NEW or 
+		current_state == State.RUNNING
+	)

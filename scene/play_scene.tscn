@@ -185,6 +185,7 @@ scroll_ignore_camera_zoom = true
 script = ExtResource("1_yrlg2")
 
 [node name="Back" type="ParallaxLayer" parent="ParallaxBackground"]
+z_index = -10
 
 [node name="MainBackground" type="TextureRect" parent="ParallaxBackground/Back"]
 custom_minimum_size = Vector2(2400, 1080)
@@ -208,6 +209,7 @@ texture = ExtResource("4_dpch1")
 expand_mode = 1
 
 [node name="Middle" type="ParallaxLayer" parent="ParallaxBackground"]
+z_index = -10
 
 [node name="Buildings" type="TextureRect" parent="ParallaxBackground/Middle"]
 custom_minimum_size = Vector2(2400, 1080)
@@ -224,6 +226,7 @@ texture = ExtResource("6_lft4v")
 expand_mode = 1
 
 [node name="Front" type="ParallaxLayer" parent="ParallaxBackground"]
+z_index = -10
 
 [node name="Buildings" type="TextureRect" parent="ParallaxBackground/Front"]
 custom_minimum_size = Vector2(2400, 1080)
@@ -240,6 +243,7 @@ texture = ExtResource("8_y6jde")
 expand_mode = 1
 
 [node name="Crow" parent="." instance=ExtResource("10_4ukpk")]
+z_index = 10
 position = Vector2(240, 540)
 
 [node name="SpawnMachine" parent="." instance=ExtResource("11_2oann")]
@@ -283,6 +287,7 @@ one_shot = true
 script = SubResource("GDScript_2oann")
 
 [node name="UiElements" type="Control" parent="."]
+z_index = 15
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -335,7 +340,7 @@ text = "ll"
 
 [node name="PausePanel" type="PanelContainer" parent="UiElements"]
 visible = false
-z_index = 100
+z_index = 15
 custom_minimum_size = Vector2(240, 240)
 layout_mode = 1
 anchors_preset = 8

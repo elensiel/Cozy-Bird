@@ -4,6 +4,8 @@ class_name ParallaxManager
 const SCROLL_SPEED: float = 12.5
 
 func _init() -> void:
+	print("ParallaxBackground: Setting up")
+	
 	ObjectReferences.parallax_background = self
 
 func _ready() -> void:

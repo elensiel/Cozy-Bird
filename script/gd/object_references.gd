@@ -1,6 +1,8 @@
 extends Node
 
-const PILLAR_SPEED: float = 150 # needed for score line
+# most of the ff references are used
+# in the StateMachine managing their 
+# process, collision, and/or visibility
 
 var crow : Crow
 var parallax_background : ParallaxManager

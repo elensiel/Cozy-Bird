@@ -9,7 +9,11 @@ class_name SpawnMachine
 const INITIAL_COUNT: int = 5
 const HEIGHT_RANGE: float = 100
 
+var x_spawn_point: float = 0.0
+
 func _init() -> void:
+	print("SpawnMachine: Setting up")
+	
 	ObjectReferences.spawn_machine = self
 
 func _ready() -> void:
@@ -19,12 +23,14 @@ func _ready() -> void:
 	for i in INITIAL_COUNT:
 		var instance: Pillar = pillar_scene.instantiate()
 		despawn(instance)
+		
+		if x_spawn_point <= 0.0:
+			x_spawn_point = ViewportHelper.GetCurrentViewport().end.x + (instance.size.x / 2)
 
 func spawn(pillar: Pillar) -> void:
-	# set position
-	var x: float = ViewportHelper.GetCurrentViewport().end.x + (pillar.size.x / 2)
-	var y: float = spawn_helper.GetRandomHeight(ViewportHelper.GetCurrentViewport().size)
-	pillar.position = Vector2(x, y)
+	# set y position
+	var y: float = spawn_helper.GetRandomHeight()
+	pillar.position = Vector2(x_spawn_point, y)
 	
 	# pooling
 	if pillar.get_parent() == hold:
@@ -47,4 +53,4 @@ func despawn(pillar: Pillar) -> void:
 	pillar.update_detection()
 
 func _on_timer_timeout() -> void:
-	spawn(hold.get_child(hold.get_child_count() - 1))     
+	spawn(hold.get_child(hold.get_child_count() - 1))

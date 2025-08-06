@@ -1,12 +1,11 @@
 using Godot;
-using System;
 
 public partial class CrowPhysics : Node
 {
-	[Export] public float JumpVelocity = -350.0f;
-	[Export] public float JumpRotation = -30.0f;
-	[Export] public float MaximumFallingSpeed = 1000.0f;
-	[Export] public float RotationSpeed = 0.04f;
+	private const float JUMP_VELOCITY = -350.0f;
+	private const float JUMP_ROTATION = -30.0f;
+	private const float MAXIMUM_FALLING_SPEED = 1000.0f;
+	private const float ROTATION_SPEED = 125.0f;
 
 	private CharacterBody2D _crow;
 	private Sprite2D _sprite;
@@ -25,19 +24,19 @@ public partial class CrowPhysics : Node
 
 		Vector2 velocity = _crow.Velocity;
 		velocity.Y += _gravity * tempDelta;
-		velocity.Y = Mathf.Min(velocity.Y, MaximumFallingSpeed);
+		velocity.Y = Mathf.Min(velocity.Y, MAXIMUM_FALLING_SPEED);
 
 		// upward
 		if (velocity.Y > 0 && Mathf.RadToDeg(_crow.Rotation) < 90)
 		{
-			_crow.Rotation += RotationSpeed * Mathf.DegToRad(1) * tempDelta;
+			_crow.Rotation += ROTATION_SPEED * Mathf.DegToRad(1) * tempDelta;
 			if (_sprite.Frame != 0) _sprite.Frame = 0;
 		}
 
 		// downward
 		else if (velocity.Y < 0 && Mathf.RadToDeg(_crow.Rotation) > 90)
 		{
-			_crow.Rotation -= RotationSpeed * Mathf.DegToRad(1) * tempDelta;
+			_crow.Rotation -= ROTATION_SPEED * Mathf.DegToRad(1) * tempDelta;
 		}
 
 		_crow.Velocity = velocity;
@@ -46,8 +45,8 @@ public partial class CrowPhysics : Node
 
 	public void Flap()
 	{
-		_crow.Velocity = _crow.Velocity with { Y = JumpVelocity };
-		_crow.Rotation = Mathf.DegToRad(JumpRotation);
+		_crow.Velocity = _crow.Velocity with { Y = JUMP_VELOCITY };
+		_crow.Rotation = Mathf.DegToRad(JUMP_ROTATION);
 		_sprite.Frame = 1;
 	}
 }

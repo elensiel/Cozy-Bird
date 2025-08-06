@@ -14,6 +14,7 @@ a = Vector2(500, 0)
 b = Vector2(-500, 0)
 
 [node name="Pillar" type="Node2D"]
+z_index = 5
 script = ExtResource("1_hpo3q")
 
 [node name="TopPillar" type="Area2D" parent="."]
@@ -46,6 +47,7 @@ input_pickable = false
 position = Vector2(0, -307)
 scale = Vector2(4.8, 4.8)
 texture = ExtResource("2_lmaer")
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomPillar"]
 position = Vector2(0.5, -350)
