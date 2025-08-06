@@ -26,7 +26,7 @@ func _enter_tree() -> void:
 	custom_minimum_size.x = viewport_size.x / 2
 	custom_minimum_size.y = viewport_size.x / 2
 	
-	for button in $CenterContainer/MarginContainer/VBoxContainer.get_children():
+	for button in $MarginContainer/VBoxContainer.get_children():
 		button.custom_minimum_size.x = custom_minimum_size.x / 2
 		button.custom_minimum_size.y = custom_minimum_size.x / 4
 "
@@ -80,16 +80,15 @@ custom_minimum_size = Vector2(240, 240)
 layout_mode = 2
 script = SubResource("GDScript_0iwki")
 
-[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer/CenterContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer/CenterContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="Play" type="Button" parent="VBoxContainer/PanelContainer/CenterContainer/MarginContainer/VBoxContainer"]
+[node name="Play" type="Button" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(120, 48)
 layout_mode = 2
 focus_mode = 0
@@ -98,7 +97,7 @@ text = "PLAY"
 icon_alignment = 1
 expand_icon = true
 
-[node name="Quit" type="Button" parent="VBoxContainer/PanelContainer/CenterContainer/MarginContainer/VBoxContainer"]
+[node name="Quit" type="Button" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(120, 48)
 layout_mode = 2
 focus_mode = 0
@@ -112,5 +111,5 @@ size_flags_vertical = 2
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="VBoxContainer/PanelContainer/CenterContainer/MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="VBoxContainer/PanelContainer/CenterContainer/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
