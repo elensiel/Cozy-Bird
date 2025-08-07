@@ -46,8 +46,8 @@ func update_detection() -> void:
 
 ## killing signal
 func _on_pillar_body_entered(crow: Crow) -> void:
-	if StateMachine.current_state != StateMachine.State.DYING:
-		StateMachine.call_deferred("change_state", StateMachine.State.DYING)
+	if ObjectReferences.state_machine.current_state != ObjectReferences.state_machine.State.DYING:
+		ObjectReferences.state_machine.call_deferred("change_state", StateMachine.State.DYING)
 		crow.physics.Flap()
 
 ## score signal

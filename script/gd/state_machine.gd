@@ -1,4 +1,5 @@
 extends Node
+class_name StateMachine
 
 enum State {
 	NEW,
@@ -10,6 +11,9 @@ enum State {
 
 var current_state: State
 var previous_state: State # used in state change pause -> new/running
+
+func _init() -> void:
+	ObjectReferences.state_machine = self
 
 func change_state(new_state: State) -> void:
 	previous_state = current_state

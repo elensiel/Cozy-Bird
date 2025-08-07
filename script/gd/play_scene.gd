@@ -4,4 +4,4 @@ func _init() -> void:
 	print("PlayScene: Setting up")
 
 func _ready() -> void:
-	StateMachine.change_state(StateMachine.State.NEW)
+	ObjectReferences.state_machine.change_state(StateMachine.State.NEW)

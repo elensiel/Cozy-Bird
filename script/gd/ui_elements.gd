@@ -13,7 +13,7 @@ func _ready() -> void:
 
 func _on_continue_pressed() -> void:
 	AudioManager.play_button_press()
-	StateMachine.change_state(StateMachine.previous_state)
+	ObjectReferences.state_machine.change_state(ObjectReferences.state_machine.previous_state)
 
 func _on_retry_pressed() -> void:
 	AudioManager.play_button_press()
@@ -25,4 +25,4 @@ func _on_main_menu_pressed() -> void:
 
 func _on_pause_pressed() -> void:
 	AudioManager.play_button_press()
-	StateMachine.change_state(StateMachine.State.PAUSED)
+	ObjectReferences.state_machine.change_state(StateMachine.State.PAUSED)

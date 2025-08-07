@@ -21,12 +21,12 @@ func _enter_tree() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("flap"):
-		if StateMachine.current_state == StateMachine.State.NEW:
-			StateMachine.change_state(StateMachine.State.RUNNING)
+		if ObjectReferences.state_machine.current_state == StateMachine.State.NEW:
+			ObjectReferences.state_machine.change_state(StateMachine.State.RUNNING)
 		
 		physics.Flap()
 		AudioManager.flap.play()
 		if randi_range(1, 100) <= CAW_CHANCE: AudioManager.caw.play()
 		
 	elif event.is_action_pressed("ui_cancel"):
-		StateMachine.change_state(StateMachine.State.PAUSED)
+		ObjectReferences.state_machine.change_state(StateMachine.State.PAUSED)

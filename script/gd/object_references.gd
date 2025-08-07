@@ -4,6 +4,7 @@ extends Node
 # in the StateMachine managing their 
 # process, collision, and/or visibility
 
+var state_machine : StateMachine
 var crow : Crow
 var parallax_background : ParallaxManager
 var spawn_machine : SpawnMachine
