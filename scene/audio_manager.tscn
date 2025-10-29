@@ -1,57 +1,201 @@
-[gd_scene load_steps=16 format=3 uid="uid://t1102pv8gyy2"]
+[gd_scene load_steps=30 format=3 uid="uid://t1102pv8gyy2"]
 
 [ext_resource type="Script" uid="uid://dseh7njnyo8mi" path="res://script/gd/audio_manager.gd" id="1_h5pei"]
-[ext_resource type="AudioStream" uid="uid://mvoxylrfnb53" path="res://audio/button_press.wav" id="2_pgo6v"]
-[ext_resource type="AudioStream" uid="uid://bom7negkc0lix" path="res://audio/flaps/flap_1.wav" id="3_chona"]
-[ext_resource type="AudioStream" uid="uid://btr02bovvhcuy" path="res://audio/flaps/flap_2.wav" id="4_j75ju"]
-[ext_resource type="AudioStream" uid="uid://b70v28pl8e7" path="res://audio/flaps/flap_3.wav" id="5_jmo2v"]
-[ext_resource type="AudioStream" uid="uid://dkvvbqb4f2po7" path="res://audio/flaps/flap_4.wav" id="6_ctfg4"]
-[ext_resource type="AudioStream" uid="uid://bj04hafjisthb" path="res://audio/caws/caw_1.wav" id="7_mjxfj"]
-[ext_resource type="AudioStream" uid="uid://b2yl2cgcaxaa8" path="res://audio/caws/caw_2.wav" id="8_dt3qd"]
-[ext_resource type="AudioStream" uid="uid://dixjpqmwpma7c" path="res://audio/caws/caw_3.wav" id="9_p3a13"]
-[ext_resource type="AudioStream" uid="uid://c0vweqnd51ge2" path="res://audio/caws/caw_4.wav" id="10_jjtks"]
-[ext_resource type="AudioStream" uid="uid://bnqgrjuxi0ahh" path="res://audio/caws/caw_5.wav" id="11_rrhhm"]
-[ext_resource type="AudioStream" uid="uid://sqhddqovlo5w" path="res://audio/score.wav" id="12_pe84c"]
+[ext_resource type="AudioStream" uid="uid://d50nr34i75hb" path="res://audio/sfx/button_press.wav" id="2_chona"]
+[ext_resource type="AudioStream" uid="uid://dtsaba8hs3yd2" path="res://audio/sfx/caws/caw_1.wav" id="3_j75ju"]
+[ext_resource type="AudioStream" uid="uid://mg6fu8qhhx86" path="res://audio/sfx/caws/caw_2.wav" id="4_jmo2v"]
+[ext_resource type="AudioStream" uid="uid://dw3pt1o2bkknk" path="res://audio/sfx/caws/caw_3.wav" id="5_ctfg4"]
+[ext_resource type="AudioStream" uid="uid://cbyj3410wid4l" path="res://audio/sfx/caws/caw_4.wav" id="6_mjxfj"]
+[ext_resource type="AudioStream" uid="uid://mk15om4qovnl" path="res://audio/sfx/caws/caw_5.wav" id="7_dt3qd"]
+[ext_resource type="AudioStream" uid="uid://clqhkvr4brtpb" path="res://audio/sfx/flaps/flap_1.wav" id="8_p3a13"]
+[ext_resource type="AudioStream" uid="uid://cduw2t0y0yiuk" path="res://audio/sfx/flaps/flap_2.wav" id="9_jjtks"]
+[ext_resource type="AudioStream" uid="uid://dkriut1iq6hi8" path="res://audio/sfx/flaps/flap_3.wav" id="10_rrhhm"]
+[ext_resource type="AudioStream" uid="uid://11tycg8drlhk" path="res://audio/sfx/flaps/flap_4.wav" id="11_pe84c"]
+[ext_resource type="AudioStream" uid="uid://c11p2be6601lm" path="res://audio/sfx/score.wav" id="12_hbotp"]
+[ext_resource type="AudioStream" uid="uid://brin6mc8y3y2m" path="res://audio/ambience/harbor/Harbor Ambience-01.ogg" id="13_pe84c"]
+[ext_resource type="AudioStream" uid="uid://c3tybcusm3xh6" path="res://audio/ambience/harbor/Harbor Ambience-02.ogg" id="14_hbotp"]
+[ext_resource type="AudioStream" uid="uid://yucsdqxubii7" path="res://audio/ambience/harbor/Harbor Ambience-03.ogg" id="15_utgtw"]
+[ext_resource type="AudioStream" uid="uid://bqguyg0bc662q" path="res://audio/ambience/harbor/Harbor Ambience-04.ogg" id="16_dpj13"]
+[ext_resource type="AudioStream" uid="uid://bccl1plv70bb8" path="res://audio/ambience/harbor/Harbor Ambience-05.ogg" id="17_kdpne"]
+[ext_resource type="AudioStream" uid="uid://cdjojyjd0p1oi" path="res://audio/ambience/downtown/02-Downtown LA City Night Ambience.ogg" id="19_vp2p0"]
+[ext_resource type="AudioStream" uid="uid://b5mth2x8532o7" path="res://audio/ambience/downtown/03-Downtown LA City Night Ambience.ogg" id="20_v7yca"]
+[ext_resource type="AudioStream" uid="uid://b283l7dtgggfj" path="res://audio/ambience/downtown/04-Downtown LA City Night Ambience.ogg" id="21_fd4ty"]
+[ext_resource type="AudioStream" uid="uid://bky7gwd8j3juu" path="res://audio/ambience/downtown/05-Downtown LA City Night Ambience.ogg" id="22_rkxv8"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_pgo6v"]
 random_pitch = 1.2
 streams_count = 1
-stream_0/stream = ExtResource("2_pgo6v")
+stream_0/stream = ExtResource("2_chona")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_utgtw"]
 random_pitch = 1.2
 streams_count = 5
-stream_0/stream = ExtResource("7_mjxfj")
-stream_1/stream = ExtResource("8_dt3qd")
-stream_2/stream = ExtResource("9_p3a13")
-stream_3/stream = ExtResource("10_jjtks")
-stream_4/stream = ExtResource("11_rrhhm")
+stream_0/stream = ExtResource("3_j75ju")
+stream_1/stream = ExtResource("4_jmo2v")
+stream_2/stream = ExtResource("5_ctfg4")
+stream_3/stream = ExtResource("6_mjxfj")
+stream_4/stream = ExtResource("7_dt3qd")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hbotp"]
 streams_count = 4
-stream_0/stream = ExtResource("3_chona")
-stream_1/stream = ExtResource("4_j75ju")
-stream_2/stream = ExtResource("5_jmo2v")
-stream_3/stream = ExtResource("6_ctfg4")
+stream_0/stream = ExtResource("8_p3a13")
+stream_1/stream = ExtResource("9_jjtks")
+stream_2/stream = ExtResource("10_rrhhm")
+stream_3/stream = ExtResource("11_pe84c")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jjtks"]
+streams_count = 5
+stream_0/stream = ExtResource("13_pe84c")
+stream_1/stream = ExtResource("14_hbotp")
+stream_2/stream = ExtResource("15_utgtw")
+stream_3/stream = ExtResource("16_dpj13")
+stream_4/stream = ExtResource("17_kdpne")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rrhhm"]
+streams_count = 5
+stream_0/stream = ExtResource("13_pe84c")
+stream_1/stream = ExtResource("14_hbotp")
+stream_2/stream = ExtResource("15_utgtw")
+stream_3/stream = ExtResource("16_dpj13")
+stream_4/stream = ExtResource("17_kdpne")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_pe84c"]
+streams_count = 4
+stream_0/stream = ExtResource("19_vp2p0")
+stream_1/stream = ExtResource("20_v7yca")
+stream_2/stream = ExtResource("21_fd4ty")
+stream_3/stream = ExtResource("22_rkxv8")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_dpj13"]
+streams_count = 4
+stream_0/stream = ExtResource("19_vp2p0")
+stream_1/stream = ExtResource("20_v7yca")
+stream_2/stream = ExtResource("21_fd4ty")
+stream_3/stream = ExtResource("22_rkxv8")
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_hbotp"]
+clip_count = 4
+clip_0/name = &"Harbor 1"
+clip_0/stream = SubResource("AudioStreamRandomizer_jjtks")
+clip_0/auto_advance = 1
+clip_0/next_clip = 1
+clip_1/name = &"Harbor 2"
+clip_1/stream = SubResource("AudioStreamRandomizer_rrhhm")
+clip_1/auto_advance = 1
+clip_1/next_clip = 0
+clip_2/name = &"Downtown 1"
+clip_2/stream = SubResource("AudioStreamRandomizer_pe84c")
+clip_2/auto_advance = 1
+clip_2/next_clip = 3
+clip_3/name = &"Downtown 2"
+clip_3/stream = SubResource("AudioStreamRandomizer_dpj13")
+clip_3/auto_advance = 1
+clip_3/next_clip = 2
+_transitions = {
+Vector2i(0, 1): {
+"fade_beats": 1.0,
+"fade_mode": 4,
+"from_time": 3,
+"to_time": 1
+},
+Vector2i(0, 2): {
+"fade_beats": 1.0,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(0, 3): {
+"fade_beats": 1.0,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(1, 0): {
+"fade_beats": 1.0,
+"fade_mode": 4,
+"from_time": 3,
+"to_time": 1
+},
+Vector2i(1, 2): {
+"fade_beats": 1.0,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(1, 3): {
+"fade_beats": 1.0,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(2, 0): {
+"fade_beats": 1.0,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(2, 1): {
+"fade_beats": 1.0,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(2, 3): {
+"fade_beats": 1.0,
+"fade_mode": 4,
+"from_time": 3,
+"to_time": 1
+},
+Vector2i(3, 0): {
+"fade_beats": 1.0,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(3, 1): {
+"fade_beats": 1.0,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(3, 2): {
+"fade_beats": 1.0,
+"fade_mode": 4,
+"from_time": 3,
+"to_time": 1
+}
+}
 
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_h5pei")
 
-[node name="ButtonPress" type="AudioStreamPlayer" parent="."]
+[node name="SFX" type="Node" parent="."]
+
+[node name="ButtonPress" type="AudioStreamPlayer" parent="SFX"]
 stream = SubResource("AudioStreamRandomizer_pgo6v")
+bus = &"Button Press"
 playback_type = 2
 
-[node name="Caw" type="AudioStreamPlayer" parent="."]
+[node name="Caw" type="AudioStreamPlayer" parent="SFX"]
 stream = SubResource("AudioStreamRandomizer_utgtw")
 bus = &"Caw"
 playback_type = 2
 
-[node name="Flap" type="AudioStreamPlayer" parent="."]
+[node name="Flap" type="AudioStreamPlayer" parent="SFX"]
 stream = SubResource("AudioStreamRandomizer_hbotp")
-bus = &"Caw"
+bus = &"Flap"
 playback_type = 2
 
-[node name="Score" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("12_pe84c")
+[node name="Score" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("12_hbotp")
 bus = &"Score"
 playback_type = 1
+
+[node name="Ambience" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamInteractive_hbotp")
+volume_db = -80.0
+autoplay = true
+bus = &"Ambience"
+playback_type = 1
+
+[connection signal="finished" from="Ambience" to="." method="_on_ambience_finished"]

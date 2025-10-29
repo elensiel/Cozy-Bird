@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://dnultiela6u37"]
 
-[ext_resource type="Texture2D" uid="uid://dsc3rmak3ei5n" path="res://sprite/crow.png" id="1_h0acc"]
+[ext_resource type="Texture2D" uid="uid://daya02gxpuvvc" path="res://sprite/crow.png" id="1_h0acc"]
 [ext_resource type="Script" uid="uid://cgqvttmbs577w" path="res://script/gd/crow.gd" id="1_k462a"]
-[ext_resource type="Script" uid="uid://clrolsaomh16g" path="res://script/cs/CrowPhysics.cs" id="3_l8xai"]
+[ext_resource type="Script" uid="uid://dcr55bfyrob22" path="res://script/cs/CrowPhysics.cs" id="3_l8xai"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h0acc"]
 radius = 8.0

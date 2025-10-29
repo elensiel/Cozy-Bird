@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b1b5oc0hcvqgo"]
 
 [ext_resource type="Script" uid="uid://c0usfoxr122m6" path="res://script/gd/spawn_machine.gd" id="1_agkiy"]
-[ext_resource type="Script" uid="uid://ctwlxm553rtj2" path="res://script/cs/SpawnHelper.cs" id="2_gm7xf"]
+[ext_resource type="Script" uid="uid://clvrtnpo0oe8e" path="res://script/cs/SpawnHelper.cs" id="2_gm7xf"]
 
 [node name="SpawnMachine" type="Node"]
 script = ExtResource("1_agkiy")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://d0g2dc4cr873o"]
 
 [ext_resource type="Script" uid="uid://dgnws0amgquea" path="res://script/gd/pillar.gd" id="1_hpo3q"]
-[ext_resource type="Texture2D" uid="uid://gbhhj2naqbw6" path="res://sprite/pillar.png" id="2_lmaer"]
+[ext_resource type="Texture2D" uid="uid://cojcoruej6aq1" path="res://sprite/pillar.png" id="2_lmaer"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ky3wf"]
 size = Vector2(173, 528)

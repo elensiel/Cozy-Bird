@@ -1,7 +1,7 @@
 [gd_resource type="AudioBusLayout" format=3 uid="uid://4v8yd215p43e"]
 
 [resource]
-bus/1/name = &"button_press"
+bus/1/name = &"Button Press"
 bus/1/solo = false
 bus/1/mute = false
 bus/1/bypass_fx = false
@@ -25,3 +25,9 @@ bus/4/mute = false
 bus/4/bypass_fx = false
 bus/4/volume_db = 0.976059
 bus/4/send = &"Master"
+bus/5/name = &"Ambience"
+bus/5/solo = false
+bus/5/mute = false
+bus/5/bypass_fx = false
+bus/5/volume_db = -7.915427
+bus/5/send = &"Master"
