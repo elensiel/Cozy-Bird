@@ -1,15 +1,24 @@
-# Cozy Bird: A Flappy Bird clone
-This will be a long term experimental project of mine where I will try to stretch out complex implementation to further improve performance, apply cleaner coding practices, and just to have fun with it.
+# Cozy Bird 🦉
+*A Flappy Bird–style experimental project built with performance and clarity in mind.*
 
-## Implemented Features
-### Gameplay
-- Basic mechanics: jump (or flap in which I called it here), gravity, collisions.
-### Architecture and Systems
-- Finite State Machine: Controls game state in the main game scene.
-- Object Pooling: For performance optimization of pipe (or pillar as I call it) spawning.
-- Audio Manager: Centralized control of sfx (and music hopefully in the future).
-### Technologies & Tools
-- Godot: Game engine for the development.
-- Pixelorama: Software used for creating the sprites
-- FL Studio: The DAW used for producing and mixing audio related assets.
-- Git & Github: Version Control of the project.
+## Overview  
+**Cozy Bird** is a long-term experimental project where I explore advanced implementation techniques, performance optimization, and clean coding practices—all while keeping the classic Flappy Bird gameplay loop fun and simple.
+
+## Implemented Features  
+
+### 🎮 Gameplay  
+- Core mechanics: flap (jump), gravity, and collision detection.  
+
+### ⚙️ Architecture & Systems  
+- **Finite State Machine (FSM):** Manages overall game states in the main scene.  
+- **Object Pooling:** Optimizes performance by reusing pillar (pipe) instances.  
+- **Audio Manager:** Centralized control of sound effects (and background music planned for later).  
+
+### 🧰 Technologies & Tools  
+- **Godot Engine:** Game development framework.  
+- **Pixelorama:** Used for creating pixel art sprites.  
+- **Audacity:** For editing, and mixing audio assets.  
+- **Git & GitHub:** Version control and collaboration.  
+
+## Notes  
+This project is both a playground for experimentation and a learning ground for better software design, optimization, and creativity.
