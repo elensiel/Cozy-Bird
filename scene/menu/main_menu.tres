@@ -1,9 +1,9 @@
 [gd_resource type="Theme" load_steps=9 format=3 uid="uid://bjffnof0x6s54"]
 
-[ext_resource type="Texture2D" uid="uid://dfp8yctjw8q7f" path="res://sprite/ui/button_hover.webp" id="1_2gqx2"]
-[ext_resource type="Texture2D" uid="uid://cvhdte8b2iqby" path="res://sprite/ui/button_normal.webp" id="2_hi3ix"]
-[ext_resource type="Texture2D" uid="uid://dnilsjlxn58b5" path="res://sprite/ui/button_pressed.webp" id="3_s58b5"]
-[ext_resource type="Texture2D" uid="uid://cd3ooheddcfoy" path="res://sprite/ui/panel.webp" id="4_hh844"]
+[ext_resource type="Texture2D" uid="uid://dfp8yctjw8q7f" path="res://assets/sprite/ui/button_hover.webp" id="1_2gqx2"]
+[ext_resource type="Texture2D" uid="uid://cvhdte8b2iqby" path="res://assets/sprite/ui/button_normal.webp" id="2_hi3ix"]
+[ext_resource type="Texture2D" uid="uid://dnilsjlxn58b5" path="res://assets/sprite/ui/button_pressed.webp" id="3_s58b5"]
+[ext_resource type="Texture2D" uid="uid://cd3ooheddcfoy" path="res://assets/sprite/ui/panel.webp" id="4_hh844"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hh844"]
 content_margin_bottom = 10.0

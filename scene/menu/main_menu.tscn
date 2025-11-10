@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://brfd3thcxjwv5"]
 
-[ext_resource type="Theme" uid="uid://bjffnof0x6s54" path="res://resource/main_menu.tres" id="1_2fwvj"]
-[ext_resource type="Texture2D" uid="uid://brn1f802nkb84" path="res://sprite/bg/main_menu_bg.png" id="1_3er1b"]
-[ext_resource type="Script" uid="uid://dh4m6fr8hj3ng" path="res://script/gd/main_menu.gd" id="1_hxu56"]
-[ext_resource type="Script" uid="uid://csmajiawoa105" path="res://script/gd/highscore_label.gd" id="4_0iwki"]
+[ext_resource type="Theme" uid="uid://bjffnof0x6s54" path="res://scene/menu/main_menu.tres" id="1_123lf"]
+[ext_resource type="Script" uid="uid://dh4m6fr8hj3ng" path="res://scene/menu/main_menu.gd" id="2_1j8a1"]
+[ext_resource type="Texture2D" uid="uid://brn1f802nkb84" path="res://assets/sprite/bg/main_menu_bg.png" id="3_8l8bj"]
+[ext_resource type="Script" uid="uid://csmajiawoa105" path="res://scene/menu/highscore_label.gd" id="4_kwj1b"]
 
 [sub_resource type="GDScript" id="GDScript_2fwvj"]
 resource_name = "main_menu_bg"
@@ -38,8 +38,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_2fwvj")
-script = ExtResource("1_hxu56")
+theme = ExtResource("1_123lf")
+script = ExtResource("2_1j8a1")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 z_index = -100
@@ -47,7 +47,7 @@ custom_minimum_size = Vector2(1440, 1080)
 layout_mode = 0
 offset_right = 1440.0
 offset_bottom = 1080.0
-texture = ExtResource("1_3er1b")
+texture = ExtResource("3_8l8bj")
 expand_mode = 1
 script = SubResource("GDScript_2fwvj")
 
@@ -73,7 +73,7 @@ size_flags_vertical = 10
 text = "HIGH SCORE: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("4_0iwki")
+script = ExtResource("4_kwj1b")
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(240, 240)

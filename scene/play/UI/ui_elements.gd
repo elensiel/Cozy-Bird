@@ -21,7 +21,7 @@ func _on_retry_pressed() -> void:
 
 func _on_main_menu_pressed() -> void:
 	AudioManager.play_button_press()
-	get_tree().change_scene_to_file("res://scene/main_menu.tscn")
+	get_tree().change_scene_to_file("res://scene/menu/main_menu.tscn")
 
 func _on_pause_pressed() -> void:
 	AudioManager.play_button_press()

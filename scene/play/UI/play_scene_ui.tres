@@ -1,9 +1,9 @@
 [gd_resource type="Theme" load_steps=10 format=3 uid="uid://c28tms1jeenlf"]
 
-[ext_resource type="Texture2D" uid="uid://dfp8yctjw8q7f" path="res://sprite/ui/button_hover.webp" id="1_iu5af"]
-[ext_resource type="Texture2D" uid="uid://cvhdte8b2iqby" path="res://sprite/ui/button_normal.webp" id="2_unanc"]
-[ext_resource type="Texture2D" uid="uid://dnilsjlxn58b5" path="res://sprite/ui/button_pressed.webp" id="3_4co01"]
-[ext_resource type="Texture2D" uid="uid://cd3ooheddcfoy" path="res://sprite/ui/panel.webp" id="4_iu5af"]
+[ext_resource type="Texture2D" uid="uid://dfp8yctjw8q7f" path="res://assets/sprite/ui/button_hover.webp" id="1_iu5af"]
+[ext_resource type="Texture2D" uid="uid://cvhdte8b2iqby" path="res://assets/sprite/ui/button_normal.webp" id="2_unanc"]
+[ext_resource type="Texture2D" uid="uid://dnilsjlxn58b5" path="res://assets/sprite/ui/button_pressed.webp" id="3_4co01"]
+[ext_resource type="Texture2D" uid="uid://cd3ooheddcfoy" path="res://assets/sprite/ui/panel.webp" id="4_iu5af"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iu5af"]
 

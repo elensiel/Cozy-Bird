@@ -18,7 +18,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	ObjectReferences.spawn_timer = timer
-	var pillar_scene: PackedScene = preload("res://scene/pillar.tscn")
+	var pillar_scene: PackedScene = preload("res://scene/pillar/pillar.tscn")
 	
 	for i in INITIAL_COUNT:
 		var instance: Pillar = pillar_scene.instantiate()

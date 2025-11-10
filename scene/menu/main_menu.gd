@@ -1,7 +1,7 @@
 extends Control
 class_name MainMenu
 
-const PLAY_SCENE_PATH: String = "res://scene/play_scene.tscn"
+const PLAY_SCENE_PATH: String = "res://scene/play/play_scene.tscn"
 
 func _init() -> void:
 	print("MainMenu: Setting up")

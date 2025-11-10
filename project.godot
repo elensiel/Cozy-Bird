@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Cozy Bird"
 config/version="1.1"
-run/main_scene="res://scene/main_menu.tscn"
+run/main_scene="res://scene/menu/main_menu.tscn"
 config/features=PackedStringArray("4.5", "C#", "Mobile")
 run/max_fps=60
 run/low_processor_mode=true
@@ -25,10 +25,10 @@ buses/default_bus_layout="uid://4v8yd215p43e"
 
 [autoload]
 
-ObjectReferences="*res://script/gd/object_references.gd"
-AudioManager="*res://scene/audio_manager.tscn"
-ScoreManager="*res://script/gd/score_manager.gd"
-ViewportHelper="*res://script/cs/ViewportHelper.cs"
+ObjectReferences="*res://globals/object_references.gd"
+AudioManager="*res://globals/AudioManager/audio_manager.tscn"
+ScoreManager="*res://globals/score_manager.gd"
+ViewportHelper="*res://globals/ViewportHelper.cs"
 
 [display]
 
