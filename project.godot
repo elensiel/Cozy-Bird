@@ -45,7 +45,7 @@ project/assembly_name="cozy bird hybrid"
 
 [gui]
 
-theme/default_font_multichannel_signed_distance_field=true
+theme/custom="uid://qne1sgxvf8gn"
 theme/custom_font="uid://bpu1t2kbadruu"
 
 [input]
