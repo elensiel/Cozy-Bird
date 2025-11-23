@@ -17,6 +17,17 @@
 [ext_resource type="Theme" uid="uid://c28tms1jeenlf" path="res://scene/play/UI/play_scene_ui.tres" id="14_ac51l"]
 [ext_resource type="Script" uid="uid://bvvpg7dvxplrx" path="res://scene/play/UI/ui_elements.gd" id="15_vsxha"]
 
+[sub_resource type="GDScript" id="GDScript_2oann"]
+resource_name = "death_timer"
+script/source = "extends Timer
+
+func _init() -> void:
+	ObjectReferences.death_timer = self
+
+func _on_timeout() -> void:
+	ObjectReferences.state_machine.change_state(StateMachine.State.DEAD)
+"
+
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4ukpk"]
 
 [sub_resource type="GDScript" id="GDScript_y6jde"]
@@ -29,17 +40,6 @@ func _ready() -> void:
 "
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ac51l"]
-
-[sub_resource type="GDScript" id="GDScript_2oann"]
-resource_name = "death_timer"
-script/source = "extends Timer
-
-func _init() -> void:
-	ObjectReferences.death_timer = self
-
-func _on_timeout() -> void:
-	ObjectReferences.state_machine.change_state(StateMachine.State.DEAD)
-"
 
 [sub_resource type="FontFile" id="FontFile_vsxha"]
 cache/0/35/0/ascent = 0.0
@@ -181,8 +181,17 @@ cache/0/32/0/scale = 1.0
 [node name="PlayScene" type="Node"]
 script = ExtResource("1_lft4v")
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="Components" type="Node" parent="."]
+
+[node name="StateMachine" type="Node" parent="Components"]
 script = ExtResource("2_b6oq2")
+
+[node name="SpawnMachine" parent="Components" instance=ExtResource("11_2oann")]
+
+[node name="DeathTimer" type="Timer" parent="Components"]
+wait_time = 2.0
+one_shot = true
+script = SubResource("GDScript_2oann")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 scroll_ignore_camera_zoom = true
@@ -250,8 +259,6 @@ expand_mode = 1
 z_index = 10
 position = Vector2(240, 540)
 
-[node name="SpawnMachine" parent="." instance=ExtResource("11_2oann")]
-
 [node name="Walls" type="Node" parent="."]
 script = ExtResource("11_y6jde")
 
@@ -284,11 +291,6 @@ script = ExtResource("13_2oann")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DespawnZone"]
 rotation = 1.5708
 shape = SubResource("WorldBoundaryShape2D_ac51l")
-
-[node name="DeathTimer" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
-script = SubResource("GDScript_2oann")
 
 [node name="UiElements" type="Control" parent="."]
 z_index = 15
@@ -422,8 +424,8 @@ focus_mode = 0
 action_mode = 0
 text = "MAIN MENU"
 
+[connection signal="timeout" from="Components/DeathTimer" to="Components/DeathTimer" method="_on_timeout"]
 [connection signal="area_entered" from="DespawnZone" to="DespawnZone" method="_on_area_entered"]
-[connection signal="timeout" from="DeathTimer" to="DeathTimer" method="_on_timeout"]
 [connection signal="pressed" from="UiElements/MarginContainer/Pause" to="UiElements" method="_on_pause_pressed"]
 [connection signal="pressed" from="UiElements/PausePanel/MarginContainer/VBoxContainer/Continue" to="UiElements" method="_on_continue_pressed"]
 [connection signal="pressed" from="UiElements/PausePanel/MarginContainer/VBoxContainer/MainMenu" to="UiElements" method="_on_main_menu_pressed"]
