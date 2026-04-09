@@ -6,3 +6,4 @@ export/
 *.import
 *.cfg
 *.apk
+*.tmp

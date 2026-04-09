@@ -1,29 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://dnultiela6u37"]
+[gd_scene format=3 uid="uid://ciu428onue38s"]
 
-[ext_resource type="Texture2D" uid="uid://daya02gxpuvvc" path="res://assets/sprite/crow.png" id="1_h0acc"]
-[ext_resource type="Script" uid="uid://cgqvttmbs577w" path="res://scene/crow/crow.gd" id="1_k462a"]
-[ext_resource type="Script" uid="uid://dcr55bfyrob22" path="res://scene/crow/CrowPhysics.cs" id="3_l8xai"]
+[ext_resource type="Texture2D" uid="uid://bfxxu887yq5pk" path="res://assets/sprite/crow.png" id="1_h0acc"]
+[ext_resource type="Script" uid="uid://c47xr5u5demk2" path="res://scene/crow/crow.gd" id="1_trtuj"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h0acc"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wffoj"]
 radius = 8.0
 height = 24.0
 
-[node name="Crow" type="CharacterBody2D"]
-z_index = 50
-scale = Vector2(4, 4)
-collision_mask = 6
+[node name="Crow" type="CharacterBody2D" unique_id=53774927]
+collision_mask = 22
 motion_mode = 1
-platform_on_leave = 2
-script = ExtResource("1_k462a")
+script = ExtResource("1_trtuj")
 
-[node name="PhysicsLogic" type="Node" parent="."]
-script = ExtResource("3_l8xai")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1523720238]
 texture = ExtResource("1_h0acc")
 hframes = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.5, 0)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_h0acc")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=952948791]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_wffoj")

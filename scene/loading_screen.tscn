@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://qw4wfnn5ftmo"]
+
+[ext_resource type="Script" uid="uid://6xv7m5d426uo" path="res://scene/loading_screen.gd" id="1_126je"]
+
+[node name="LoadingScreen" type="Control" unique_id=868429054]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_behavior_recursive = 1
+mouse_behavior_recursive = 1
+script = ExtResource("1_126je")
+metadata/_edit_lock_ = true
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1178923916]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="CenterContainer" unique_id=961728731]
+layout_mode = 2
+text = " "
+horizontal_alignment = 1
+vertical_alignment = 1

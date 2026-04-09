@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bkjtuwu67mi0k"]
+
+[ext_resource type="Script" uid="uid://cr050yuijs8vr" path="res://scene/base_button.gd" id="1_xmy7l"]
+
+[node name="BaseButton" type="Button" unique_id=57451644]
+mouse_behavior_recursive = 2
+action_mode = 0
+script = ExtResource("1_xmy7l")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

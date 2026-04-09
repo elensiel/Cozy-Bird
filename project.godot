@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="Cozy Bird"
-config/version="1.1"
-run/main_scene="res://scene/menu/main_menu.tscn"
-config/features=PackedStringArray("4.5", "C#", "Mobile")
-run/max_fps=60
-run/low_processor_mode=true
-boot_splash/image="uid://coyh0fjbh1tn4"
-config/icon="uid://bjjgeougu24rw"
+config/description="A Flappy Bird clone with Lo-Fi aesthetics."
+config/version="1.2"
+run/main_scene="uid://qw4wfnn5ftmo"
+config/features=PackedStringArray("4.6", "C#", "Mobile")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/show_image=false
+config/icon="uid://bofs7jn3vdyy4"
 
 [audio]
 
@@ -25,17 +25,14 @@ buses/default_bus_layout="uid://4v8yd215p43e"
 
 [autoload]
 
-ObjectReferences="*res://globals/object_references.gd"
-AudioManager="*res://globals/AudioManager/audio_manager.tscn"
-ScoreManager="*res://globals/score_manager.gd"
-ViewportHelper="*res://globals/ViewportHelper.cs"
+AudioManager="*uid://t1102pv8gyy2"
 
 [display]
 
-window/size/viewport_width=480
-window/size/viewport_height=1080
+window/size/viewport_width=414
+window/size/viewport_height=736
+window/size/mode=2
 window/stretch/mode="viewport"
-window/stretch/aspect="expand"
 window/handheld/orientation=1
 window/vsync/vsync_mode=0
 
@@ -46,7 +43,7 @@ project/assembly_name="cozy bird hybrid"
 [gui]
 
 theme/custom="uid://qne1sgxvf8gn"
-theme/custom_font="uid://bpu1t2kbadruu"
+theme/custom_font="uid://cysk7fpb4npjy"
 
 [input]
 
